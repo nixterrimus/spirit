@@ -69,7 +69,6 @@ end
 # A device is an object that maintains state;
 # The UI will show a list of devices.  Devices register themselves
 # with the adapter
-#
 class Device
   attr_accessor :uid
 

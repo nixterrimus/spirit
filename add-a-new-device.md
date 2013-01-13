@@ -55,3 +55,16 @@ toasty_toasty_adapter = ToasterAdapter.new
 upstairs_toaster = Toaster.new(toasty_toasty_adapter)
 downstairs_toaster = Toaster.new(toasty_toasty_adapter)
 ```
+
+You know what else is lame?  Adapters are going to get super fat.
+Imagine with me a device that can play media (play, pause), set volume
+(@volume), turn on and off (on and off), and make grind coffee.  Whoah.
+Would you even pay for such a thing? Even if not, try to picture the
+adapter.  It's a whole mess of code that does a whole bunch of things.
+Too much. That's perhaps the fault of magician that created the device
+but I wonder if it results in a file that's largely unmaintable because
+of it's complexity.  On the other hand this device is serially connected
+and I don't think it makes sense for the device to know that it's serial
+connected.  When version 3.2.4 of the tuned-coffee-grindo comes out and
+it now talks over http with a super RESTful API it would be pretty neat
+to just swap out the adapter.
