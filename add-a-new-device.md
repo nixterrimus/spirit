@@ -45,3 +45,13 @@ two classes for something that's just being used once?  Having an
 adapter seems like a testing advantage because the *how* is moved out
 and a separate concern from what the device is doing.  But will adapters
 ever be re-used? Hmmm.  It seems like there should be a better approach.
+
+Then again, there might be multiple toasters in my house that are
+controlled by a centralized toaster adapter.  In which case there would
+be re-use:
+
+```
+toasty_toasty_adapter = ToasterAdapter.new
+upstairs_toaster = Toaster.new(toasty_toasty_adapter)
+downstairs_toaster = Toaster.new(toasty_toasty_adapter)
+```
