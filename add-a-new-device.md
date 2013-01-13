@@ -68,3 +68,12 @@ and I don't think it makes sense for the device to know that it's serial
 connected.  When version 3.2.4 of the tuned-coffee-grindo comes out and
 it now talks over http with a super RESTful API it would be pretty neat
 to just swap out the adapter.
+
+Somesorta generator might help with adding new devices:
+
+```shell
+spirit generate toasto-tuno binary_device media_device
+```
+
+Which would generate a device and an adapter and some tests (super
+realiable)
