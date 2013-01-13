@@ -1,12 +1,21 @@
 require 'pry'
 
 # An adapter is a piece of code that is capable of translating virtual state
-#   into physical state.
+#   into physical state.  It also manages a set of devices.
 # Trying to steal ideas from Faraday (an HTTP adapter)
 module Adapter
 
+  class Base
+    attr_accessor :devices
+
+    def register_device(device)
+      @devices ||= []
+      @devices << device
+    end
+  end
+
   # The most basic possible adapter, for all calls it logs them
-  class LogAdapter
+  class LogAdapter < Adapter::Base
     def method_missing(meth, *args, &block)
       puts "Log Adapter: Called #{meth} with args #{args}"
     end
@@ -16,7 +25,7 @@ module Adapter
   # An HTTP adapter for talking to the hue bridge
   #   There might be a whole class of adapter that talk to HTTP - include a
   #   HTTP base class?
-  class HueAdapter
+  class HueAdapter < Adapter::Base
 
     attr_accessor :ip_address
 
@@ -37,7 +46,7 @@ module Adapter
 
 
   # A serial adapter for talking to an ardunion - again base Serial class?
-  class ArduinoAdapter
+  class ArduinoAdapter < Adapter::Base
     # require 'serialport'
     def initialize(serial_port, baud, parity)
       # serial port setup
@@ -59,11 +68,15 @@ end
 
 
 # A device is an object that maintains state;
-# The UI will show a list of devices
+# The UI will show a list of devices.  Devices register themselves
+# with the adapter
+#
 class Device
-  # Every device should have a setting variable that is persisted
+  attr_accessor :uid
+
   def initialize(adapter = nil)
     @adapter = adapter || Adapter::LogAdapter.new
+    @adapter.register_device self
   end
 end
 
