@@ -45,7 +45,7 @@ module Adapter
   end
 
 
-  # A serial adapter for talking to an ardunion - again base Serial class?
+  # An actually working arduino adapter
   class ArduinoAdapter < Adapter::Base
     require 'dino'
     def initialize(pin)
