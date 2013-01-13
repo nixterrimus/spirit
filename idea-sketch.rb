@@ -47,19 +47,18 @@ module Adapter
 
   # A serial adapter for talking to an ardunion - again base Serial class?
   class ArduinoAdapter < Adapter::Base
-    # require 'serialport'
-    def initialize(serial_port, baud, parity)
-      # serial port setup
+    require 'dino'
+    def initialize(pin)
+      board = Dino::Board.new(Dino::TxRx.new)
+      @led = Dino::Components::Led.new(pin: pin, board: board)
     end
 
     def on(device)
-      # use the already setup serial port to send some data
-      puts "#{device.class} sending ON"
+      @led.send(:on)
     end
 
     def off(device)
-      # use the already setup serial port to send some data
-      puts "#{device.class} sending OFF"
+      @led.send(:off)
     end
   end
 end
@@ -132,8 +131,8 @@ class HueBulb < Device
 end
 
 
-# This with a motor: http://www.runnerduck.com/images/kc_pinwheel.jpg
-class MotorizedWhirlyPod < Device
+# Something like this: https://raw.github.com/austinbv/dino/master/examples/led/led.png
+class BlinkyBlinky < Device
   include Capabilities::BinaryDevice
 end
 
@@ -141,12 +140,13 @@ end
 
 
 hue_adapter = Adapter::HueAdapter.new('0.0.0.0')
-arduino_adapter = Adapter::ArduinoAdapter.new(1, 9600, 1)
+arduino_adapter = Adapter::ArduinoAdapter.new(13)
 
 devices = Array.new
 devices <<  HueBulb.new(hue_adapter, 1)
 devices <<  HueBulb.new(hue_adapter, 2)
-devices <<  MotorizedWhirlyPod.new(arduino_adapter)
+blinky =  BlinkyBlinky.new(arduino_adapter)
+devices << blinky
 
 
 
