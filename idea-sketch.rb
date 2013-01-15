@@ -65,6 +65,21 @@ end
 
 
 
+#Spirit.configure do |spirit|
+  #spirit.persistant_store = :file
+#end
+
+#all = Spirit.devices
+#binaryDevices = Spirit.devices.filter { |d| d.kind_of? Capabilities::BinaryDevice }
+
+#class Spirit
+  #def initialize
+
+  #end
+#end
+
+
+
 
 # A device is an object that maintains state;
 # The UI will show a list of devices.  Devices register themselves
@@ -72,7 +87,11 @@ end
 class Device
   attr_accessor :uid
 
-  def initialize(adapter = nil)
+  def initialize(adapter = nil, device_options = [])
+    device_options.each do |option|
+      self.class.class_eval{attr_accessor(option)} unless respond_to?(key)
+    end
+
     @adapter = adapter || Adapter::LogAdapter.new
     @adapter.register_device self
   end
@@ -120,6 +139,7 @@ end
 class HueBulb < Device
   include Capabilities::BinaryDevice
   include Capabilities::DimmableDevice
+  #include Capabilities::RGBDevice
 
   attr_accessor :bulb_id
 
