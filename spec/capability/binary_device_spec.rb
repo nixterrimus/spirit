@@ -16,6 +16,11 @@ shared_examples_for Capability::BinaryDevice do |device|
       device.on
       expect(device.binary_state).to be(:on)
     end
+
+    it 'tells the adapter to turn on' do
+      device.adapter.should_receive(:on).with(device).once
+      device.on
+    end
   end
 
   describe 'off' do
@@ -23,6 +28,10 @@ shared_examples_for Capability::BinaryDevice do |device|
       device.binary_state = :on
       device.off
       expect(device.binary_state).to be(:off)
+    end
+    it 'tells the adapter to turn off' do
+      device.adapter.should_receive(:off).with(device).once
+      device.off
     end
   end
 
@@ -41,12 +50,19 @@ shared_examples_for Capability::BinaryDevice do |device|
   end
 
   describe 'toggle' do
-    it 'flips the state of the device' do
-      device.on
-      device.toggle
-      expect(device.off?).to be_true
-      device.toggle
-      expect(device.on?).to be_true
+    context 'when off' do
+      it 'calls on' do
+        device.should_receive(:on)
+        device.off
+        device.toggle
+      end
+    end
+    context 'when on' do
+      it 'calls off' do
+        device.should_receive(:off)
+        device.on
+        device.toggle
+      end
     end
   end
 end

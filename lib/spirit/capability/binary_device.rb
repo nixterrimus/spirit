@@ -13,10 +13,12 @@ module Capability
 
     def on
       self.binary_state = :on
+      self.adapter.send(__method__, self)
     end
 
     def off
       self.binary_state = :off
+      self.adapter.send(__method__, self)
     end
 
     def on?
