@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ["Nick Rowe"]
   gem.email         = ["nixterrimus@dcxn.com"]
   gem.description   = %q{Spirit is a personal internet of things manager & Automation ghost}
-  gem.summary = spec.description
+  gem.summary       = gem.description
   gem.homepage      = "http://dcxn.com"
 
   gem.files         = `git ls-files`.split($/)
