@@ -7,4 +7,10 @@ describe Device::Light do
   # This doesn't seem to work with subject and adapter... very frustrating
   it_should_behave_like Capability::BinaryDevice, Device::Light.new(Adapter::NilAdapter.new) 
 
+  describe 'play' do
+    adapter = Adapter::Arduino.new
+    light = Device::Light.new(adapter)
+    binding.pry
+  end
+
 end
