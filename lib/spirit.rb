@@ -1,4 +1,5 @@
 require "spirit/version"
+require "spirit/adapter"
 require "spirit/capability"
 require "spirit/device"
 

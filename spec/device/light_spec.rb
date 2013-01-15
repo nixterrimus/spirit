@@ -5,7 +5,4 @@ describe Device::Light do
 
   it_should_behave_like Capability::BinaryDevice, Device::Light.new
 
-  it 'exists' do
-    #binding.pry
-  end
 end
