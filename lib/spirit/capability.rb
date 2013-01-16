@@ -1,4 +1,4 @@
-require 'spirit/capability/binary_device'
+require 'spirit/capability/switchable'
 
 module Capability
 

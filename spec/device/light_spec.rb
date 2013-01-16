@@ -1,10 +1,8 @@
 require 'spec_helper'
 
 describe Device::Light do
-  let(:adapter) { Adapter::NilAdapter.new }
-  let(:subject) { Device::Light.new(adapter) }
+  subject { Device::Light.new }
 
-  # This doesn't seem to work with subject and adapter... very frustrating
-  it_should_behave_like Capability::Switchable, Device::Light.new(Adapter::NilAdapter.new) 
+  it_should_behave_like Capability::Switchable, Device::Light.new
 
 end
