@@ -1,5 +1,5 @@
 module Capability
-  module BinaryDevice
+  module Switchable
 
     @binary_state = :off
 

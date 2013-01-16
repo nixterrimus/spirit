@@ -1,5 +1,5 @@
 module Device
   class Light < Device::Base
-    include Capability::BinaryDevice
+    include Capability::Switchable
   end
 end
