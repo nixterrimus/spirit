@@ -1,13 +1,12 @@
 module Capability
   module Switchable
 
-    @binary_state = :off
-
     def binary_state
-      @binary_state
+      @binary_state || default_binary_state
     end
 
     def binary_state=(state)
+      raise unless valid_binary_states.include? state
       @binary_state = state
     end
 
@@ -31,6 +30,14 @@ module Capability
 
     def toggle
       self.on? ? self.off : self.on
+    end
+
+    def valid_binary_states
+      [:on, :off, :unknown]
+    end
+
+    def default_binary_state
+      :unknown
     end
   end
 end
