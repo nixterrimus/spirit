@@ -1,5 +1,9 @@
 # Readme
 
+You can see what is being worked on, and planned for at the [Pivotal
+Tracker for
+Spirit](https://www.pivotaltracker.com/projects/730889/stories#)
+
 Spirit is a ruby based home automation system.  It's the friendly ghost
 that controls your house, automatically turns devices on and off, and
 reacts to other changs in the environment.
