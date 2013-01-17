@@ -1,7 +1,12 @@
 module Adapter
   class NilAdapter
-    def method_missing(meth, *args, &block)
+
+    def set_state(params = {})
       nil
+    end
+
+    def get_state(device = nil)
+      {}
     end
   end
 end
