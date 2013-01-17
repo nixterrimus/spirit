@@ -29,7 +29,7 @@ shared_examples_for Capability::Switchable do |device|
     end
 
     it 'tells the adapter to turn on' do
-      device.adapter.should_receive(:set_state).once
+      device.adapter.should_receive(:set_current_state).once
       device.on
     end
   end
@@ -41,7 +41,7 @@ shared_examples_for Capability::Switchable do |device|
       expect(device.binary_state).to be(:off)
     end
     it 'tells the adapter to turn off' do
-      device.adapter.should_receive(:set_state).once
+      device.adapter.should_receive(:set_current_state).once
       device.off
     end
   end

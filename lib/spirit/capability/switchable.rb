@@ -12,12 +12,12 @@ module Capability
 
     def on
       self.binary_state = :on
-      self.adapter.set_state
+      self.adapter.set_current_state
     end
 
     def off
       self.binary_state = :off
-      self.adapter.set_state
+      self.adapter.set_current_state
     end
 
     def on?

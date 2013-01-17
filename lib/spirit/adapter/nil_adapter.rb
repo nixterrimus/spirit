@@ -1,11 +1,11 @@
 module Adapter
   class NilAdapter
 
-    def set_state(params = {})
+    def set_current_state(params = {})
       nil
     end
 
-    def get_state(device = nil)
+    def current_state(device = nil)
       {}
     end
   end
