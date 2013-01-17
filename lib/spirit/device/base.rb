@@ -7,6 +7,10 @@ module Device
       @configuration = params.fetch(:configuration, default_configuration)
     end
 
+    def update_attributes(attributes = {})
+      attributes.each { |key, val| send("#{key}=", val) if respond_to?("#{key}=") }
+    end
+
     private
 
     def default_adapter
