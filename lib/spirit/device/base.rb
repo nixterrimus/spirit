@@ -11,6 +11,16 @@ module Device
       attributes.each { |key, val| send("#{key}=", val) if respond_to?("#{key}=") }
     end
 
+    # Eventually need to be wrapped up to handle problems with talking
+    #  to the real world (ie, begin resuce)
+    def apply_state
+      adapter.set_current_state(self)
+    end
+
+    def request_state
+      adapter.get_current_state(self)
+    end
+
     private
 
     def default_adapter
@@ -20,5 +30,6 @@ module Device
     def default_configuration
       {}
     end
+
   end
 end

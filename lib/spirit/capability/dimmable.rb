@@ -11,12 +11,12 @@ module Capability
 
     def dim_up(amount=10)
       self.level = [self.level + amount, max_level].min
-      self.adapter.set_current_state
+      self.apply_state
     end
 
     def dim_down(amount=10)
       self.level = [self.level - amount, min_level].max
-      self.adapter.set_current_state
+      self.apply_state
     end
 
     def default_level
