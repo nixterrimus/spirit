@@ -14,11 +14,11 @@ module Device
     # Eventually need to be wrapped up to handle problems with talking
     #  to the real world (ie, begin resuce)
     def apply_state
-      adapter.set_current_state(self)
+      adapter.apply_device_state(self)
     end
 
-    def request_state
-      adapter.get_current_state(self)
+    def get_updated_state
+      adapter.update_device_state(self)
     end
 
     private
