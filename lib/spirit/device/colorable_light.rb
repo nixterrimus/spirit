@@ -2,6 +2,6 @@ module Device
   class RGBLight < Device::Base
     include Capability::Switchable
     include Capability::Dimmable
-    #include Capability::RGBable
+    include Capability::Colorable
   end
 end
