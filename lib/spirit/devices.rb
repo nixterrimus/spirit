@@ -1,11 +1,12 @@
 class Devices
-  attr_accessor :device_pool
+  include ::Poolable
 
   def initialize
-
+    add(Device::Light.new)
+    add(Device::DimmableLight.new)
+    add(Device::ColorableLight.new)
+    add(Device::Light.new)
   end
 
-  def self.all
-    [ Device::Light.new, Device::DimmableLight.new, Device::ColorableLight.new]
-  end
+
 end

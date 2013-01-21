@@ -15,3 +15,12 @@ Right now it's just some ideas.  I would love feedback or encouragement.
 Feel free to browse the code, for it or contact me
 [@nixterrimus](twitter.com/nixterrimus) on
 twitter.
+
+## Setup
+
+```ruby
+Spirit.configure do |config|
+  config.setting = 'setting'
+end
+```
+
