@@ -4,7 +4,6 @@ require "spirit/version"
 require "spirit/poolable"
 require "spirit/adapter"
 require "spirit/adapters"
-require "spirit/capability"
 require "spirit/device"
 require "spirit/devices"
 
