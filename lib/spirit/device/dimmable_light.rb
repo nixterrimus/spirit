@@ -1,7 +1,5 @@
-module Device
-  class DimmableLight < Device::Base
-    include Capability::Switchable
-    include Capability::Dimmable
-    include Capability::Identifiable
-  end
+class Device::DimmableLight < Device::Base
+  include Device::Abilities::Switchable
+  include Device::Abilities::Identifiable
+  include Device::Abilities::Dimmable    
 end

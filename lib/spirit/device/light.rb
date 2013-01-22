@@ -1,6 +1,6 @@
 module Device
   class Light < Device::Base
-    include Capability::Switchable
-    include Capability::Identifiable
+    include Device::Abilities::Switchable
+    include Device::Abilities::Identifiable
   end
 end

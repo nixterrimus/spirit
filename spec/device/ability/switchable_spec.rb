@@ -1,12 +1,16 @@
 require 'spec_helper'
 
-shared_examples_for Capability::Switchable do |device|
-  it 'defaults to unknown state' do
-    expect(device.binary_state).to be(:unknown)
-  end
+shared_examples_for Device::Abilities::Switchable do |device|
 
   it 'responds to binary_state' do
     expect { device.binary_state }.to_not raise_error(NoMethodError)
+  end
+
+  describe 'binary state' do
+    it 'defaults to unknown state' do
+      expect(device.binary_state).to be(:unknown)
+    end
+    
   end
 
   describe 'setting binary state' do

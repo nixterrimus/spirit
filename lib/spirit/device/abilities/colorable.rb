@@ -1,4 +1,4 @@
-module Capability
+module Abilities
   module Colorable
     def red=(red)
       @red = red
@@ -23,11 +23,6 @@ module Capability
     def blue
       @blue
     end
-
-    def color(hex)
-      #
-    end
-
 
     def default_color
       self.red(0)
