@@ -31,11 +31,4 @@ module Persistance
   def persistance_store
     Spirit.persistance
   end
-
-
-  def persistance_key; nil; end
-
-  def persistance_value
-    Marshal.dump(self)
-  end
 end
