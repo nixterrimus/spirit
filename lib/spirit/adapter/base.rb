@@ -1,7 +1,7 @@
 module Adapter
   class Base
     include ::Identifiable
-    include ::Persistance
+    include ::Persistable::Member
 
     attr_accessor :setup_complete
 

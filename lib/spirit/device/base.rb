@@ -2,7 +2,7 @@ module Device
   class Base
     attr_accessor :adapter, :configuration, :adapter_uuid
     include ::Identifiable
-    include ::Persistance
+    include ::Persistable::Member
 
     def initialize(params = {})
       @adapter = params.fetch(:adapter, default_adapter)

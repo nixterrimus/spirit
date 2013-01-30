@@ -1,4 +1,3 @@
 class Devices < Array
-  include Persistance
-  include Persistance::Collection
+  include Persistable::Collection
 end

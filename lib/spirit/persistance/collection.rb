@@ -1,5 +1,7 @@
-module Persistance
+module Persistable
   module Collection
+    include ::Persistable
+
     module ClassMethods
       def find_or_initialize_in(persistance_store)
         persistance_key = self.to_s.downcase
