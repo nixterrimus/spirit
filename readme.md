@@ -1,4 +1,4 @@
-# Readme
+# Spirit: Your Personal Internet of Things Hub
 
 Spirit is your personal internet of things hub.  It makes it simple fo
 r you to manage all of the connected things in your life; things like
