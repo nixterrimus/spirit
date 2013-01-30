@@ -7,7 +7,6 @@ require 'singleton'
 
 #Internal Dependencies
 require "spirit/version"
-require "spirit/persistable"
 require "spirit/persistance"
 require "spirit/object_store"
 require "spirit/adapter"
