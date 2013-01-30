@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-shared_examples_for Device::Abilities::Identifiable do |device|
+shared_examples_for Identifiable do |device|
   describe 'the uuid attribute' do
     context 'is not set' do
       before(:each) do
