@@ -103,3 +103,5 @@ You can see what is being worked on, and planned for at the [Pivotal
 Tracker for
 Spirit](https://www.pivotaltracker.com/projects/730889/stories#)
 
+
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/96bd5ee72b2902f6f59f64f543880874 "githalytics.com")](http://githalytics.com/nixterrimus/spirit)
