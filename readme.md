@@ -81,6 +81,14 @@ interface for `switchable` will probably have an on button and an off
 button.  Then, any devices that includes the switchable ability will
 also have that on and off button.
 
+Any device can give a list of it's abilites:
+
+```ruby
+> device = Device::Light.new
+> device.abilities
+=> ["switchable"]
+```
+
 ## Adapters
 
 Adapters are what take a device and make it happen in the real world.
