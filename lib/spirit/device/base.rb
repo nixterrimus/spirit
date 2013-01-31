@@ -39,6 +39,10 @@ module Device
       @adapter || default_adapter
     end
 
+    def abilities
+      self.class.included_modules.collect { |d| d.to_s.split('::').last }
+    end
+
     private
 
     def default_adapter
