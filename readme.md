@@ -55,6 +55,32 @@ Spirit.devices
 `Spirit.devices` returns an array.  In it we have just one device, a
 `Device::Light`.
 
+## Device Abilities
+
+Devices are really small and simple classes.  For example, here's one
+for a basic dimmable light:
+
+```ruby
+class Device::DimmableLight < Device::Base
+  include Device::Abilities::Switchable
+  include Device::Abilities::Dimmable
+end
+```
+
+The device class is made up of abilities.  These abilities are what
+really give devices their power.  Because a device is composed of a
+several abilities, it's easy to create a device that's a mix of all
+different things.
+
+These abilities also are important because they are the contract the
+device agrees to exist by.  These abilities define the controls that
+are avialable for that device in the web interface.
+
+The switchable ability has an `on` and `off` method.  The user
+interface for `switchable` will probably have an on button and an off
+button.  Then, any devices that includes the switchable ability will
+also have that on and off button.
+
 ## Adapters
 
 Adapters are what take a device and make it happen in the real world.
