@@ -40,10 +40,22 @@ module Device
     end
 
     def abilities
-      self.class.included_modules.collect { |d| d.to_s.split('::').last }
+      ability_modules.collect { |m| ability_module_to_s(m) }
+    end
+    
+    private
+
+    def ability_modules
+      self.class.included_modules.select { |m| ability_module?(m) }
     end
 
-    private
+    def ability_module?(m)
+      m.to_s =~ /Abilities/
+    end
+
+    def ability_module_to_s(m)
+      m.to_s.downcase.split('::').last
+    end
 
     def default_adapter
       Adapter::NilAdapter.new

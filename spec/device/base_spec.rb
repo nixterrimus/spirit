@@ -22,7 +22,7 @@ describe Device::Base do
       subject.class.stub(:included_modules).and_return(abilities)
     end
     it 'includes a list of modules that are included from the abilities namespace' do
-      subject.abilities.should include('Switchable')
+      subject.abilities.should include('switchable')
     end
   end
 end
