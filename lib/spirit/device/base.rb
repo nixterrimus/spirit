@@ -42,7 +42,7 @@ module Device
     def abilities
       ability_modules.collect { |m| ability_module_to_s(m) }
     end
-    
+
     private
 
     def ability_modules
