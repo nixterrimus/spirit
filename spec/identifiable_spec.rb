@@ -2,7 +2,7 @@ require 'spec_helper'
 
 shared_examples_for Identifiable do |device|
   describe 'the uuid attribute' do
-    context 'is not set' do
+    context 'when the uuid is not set' do
       before(:each) do
         device.uuid = nil
       end
@@ -16,7 +16,7 @@ shared_examples_for Identifiable do |device|
         device.uuid
       end
     end
-    
+
     it 'stays constant between calls' do
       expect(device.uuid).to equal(device.uuid)
     end
