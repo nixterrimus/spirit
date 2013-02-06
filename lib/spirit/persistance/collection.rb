@@ -3,7 +3,7 @@ module Persistable
     include ::Persistable
 
     module ClassMethods
-      def find_or_initialize_in(persistance_store)
+      def find_or_initialize(persistance_store)
         persistance_key = self.to_s.downcase
         persistance_store.stored?(persistance_key) ? persistance_store.load(persistance_key) : self.new
       end

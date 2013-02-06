@@ -19,6 +19,12 @@ describe Spirit do
     end
   end
 
+  describe 'presets' do
+    it 'returns a list' do
+      expect(Spirit.presets).to be_empty
+    end
+  end
+
   describe 'persistance' do
     it 'returns an object store' do
       expect(Spirit.persistance.class).to be(ObjectStore)

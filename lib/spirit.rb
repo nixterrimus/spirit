@@ -10,6 +10,7 @@ require "spirit/version"
 require "spirit/persistance"
 require "spirit/adapters"
 require "spirit/devices"
+require "spirit/presets"
 
 
 module Spirit
@@ -27,11 +28,15 @@ module Spirit
   end
 
   def self.devices
-    @devices ||= Devices.find_or_initialize_in(self.persistance)
+    @devices ||= Devices.find_or_initialize(self.persistance)
+  end
+
+  def self.presets
+    @presets ||= Presets.find_or_initialize(self.persistance)
   end
 
   def self.adapters
-    @adapters ||= Adapters.find_or_initialize_in(self.persistance)
+    @adapters ||= Adapters.find_or_initialize(self.persistance)
   end
 
   def self.configuration
