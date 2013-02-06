@@ -6,4 +6,8 @@ require 'spirit/device/colorable_light'
 
 class Devices < Array
   include Persistable::Collection
+
+  def find(uuid)
+    select { |item| item.uuid == uuid }.first
+  end
 end
