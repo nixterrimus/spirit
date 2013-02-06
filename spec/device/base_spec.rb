@@ -25,4 +25,16 @@ describe Device::Base do
       subject.abilities.should include('switchable')
     end
   end
+
+  describe "update_attributes!" do
+    it 'takes a hash and updates attributes' do
+      subject.should_receive(:update_attributes).once
+      subject.update_attributes!( { attribute: 1 })
+    end
+
+    it 'applies the state' do
+      subject.should_receive(:apply_state).once
+      subject.update_attributes!( { attribte: 1 } )
+    end
+  end
 end

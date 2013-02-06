@@ -43,6 +43,11 @@ module Device
       ability_modules.collect { |m| ability_module_to_s(m) }
     end
 
+    def update_attributes!(attributes)
+      update_attributes(attributes)
+      apply_state
+    end
+
     private
 
     def ability_modules
