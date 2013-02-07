@@ -1,6 +1,6 @@
 require 'spec_helper'
-require 'identifiable_spec'
-require 'device/ability/switchable_spec'
+require 'spirit/identifiable_spec'
+require 'spirit/device/ability/switchable_spec'
 
 describe Device::Light do
   subject { Device::Light.new }

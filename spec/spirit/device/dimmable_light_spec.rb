@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'identifiable_spec'
-require 'device/ability/switchable_spec'
-require 'device/ability/dimmable_spec'
+require 'spirit/identifiable_spec'
+require 'spirit/device/ability/switchable_spec'
+require 'spirit/device/ability/dimmable_spec'
 
 describe Device::DimmableLight do
   subject { Device::DimmableLight.new }
