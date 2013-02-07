@@ -1,6 +1,7 @@
 module Device
   class Base
     attr_accessor :adapter, :configuration, :adapter_uuid
+    extend  ::EphemeralAttributes
     include ::Identifiable
     include ::Persistable::Member
 

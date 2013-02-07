@@ -1,4 +1,8 @@
 module Device::Abilities::Dimmable
+  def self.included(base)
+    base.ephemeral_attribute :level
+  end
+
   def level
     @level || default_level
   end

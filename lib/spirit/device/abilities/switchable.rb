@@ -1,5 +1,9 @@
 module Device::Abilities::Switchable
 
+  def self.included(base)
+    base.ephemeral_attribute :binary_state
+  end
+
   def binary_state
     @binary_state || default_binary_state
   end

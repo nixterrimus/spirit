@@ -1,3 +1,4 @@
+require 'spirit/ephemeral_attributes'
 require 'spirit/device/abilities'
 require 'spirit/device/base'
 require 'spirit/device/light'
