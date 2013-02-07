@@ -44,6 +44,12 @@ module Device
       ability_modules.collect { |m| ability_module_to_s(m) }
     end
 
+    def ephemeral_attribute_values
+      self.class.ephemeral_attributes.inject({}) do |hash, attribute|
+        hash.merge( { attribute => send(attribute)} )
+      end
+    end
+
     def update_attributes!(attributes)
       update_attributes(attributes)
       apply_state

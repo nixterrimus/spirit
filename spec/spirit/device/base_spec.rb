@@ -37,4 +37,12 @@ describe Device::Base do
       subject.update_attributes!( { attribte: 1 } )
     end
   end
+
+  describe "ephemeral_attribute_values" do
+    it 'returns a hash of the empheral attributes with values' do
+      subject.class.stub(:ephemeral_attributes).and_return([:foo])
+      subject.stub(:foo).and_return(1)
+      expect(subject.ephemeral_attribute_values[:foo]).to be(1)
+    end
+  end
 end
