@@ -19,7 +19,6 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency "moneta"
 
-  gem.add_runtime_dependency "dino"
 
   gem.add_development_dependency "rspec", "~> 2.6"
   gem.add_development_dependency "pry"
