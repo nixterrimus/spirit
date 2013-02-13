@@ -2,6 +2,8 @@ module Adapter
   class Base
     include ::Identifiable
     include ::Persistable::Member
+    include Toy::Store
+    
 
     attr_accessor :setup_complete
 

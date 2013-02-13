@@ -1,10 +1,9 @@
 module Device
   class Base
     #attr_accessor :adapter, :configuration, :adapter_uuid
-    extend  ::EphemeralAttributes
-    include ::Identifiable
-    include ::Persistable::Member
     include Toy::Store
+
+    reference :device_adapter, Adapter::Base
 
     #def initialize(params = {})
       #@adapter = params.fetch(:adapter, default_adapter)
@@ -22,33 +21,8 @@ module Device
       adapter.update_device_state(self)
     end
 
-    def persistance_key
-      uuid
-    end
-
-    def to_hash
-      {
-        uuid: uuid,
-        adapter_uuid: adapter.uuid
-      }
-    end
-
-    def after_load
-      #@adapter = persistance_store.load(adapter_uuid)
-    end
-
-    def adapter
-      @adapter || default_adapter
-    end
-
     def abilities
       ability_modules.collect { |m| ability_module_to_s(m) }
-    end
-
-    def ephemeral_attribute_values
-      self.class.ephemeral_attributes.inject({}) do |hash, attribute|
-        hash.merge( { attribute => send(attribute)} )
-      end
     end
 
     def update_attributes!(attributes)
@@ -69,14 +43,5 @@ module Device
     def ability_module_to_s(m)
       m.to_s.downcase.split('::').last
     end
-
-    def default_adapter
-      Adapter::NilAdapter.new
-    end
-
-    def default_configuration
-      {}
-    end
-
   end
 end
