@@ -1,5 +1,6 @@
 # External Dependencies
 require 'moneta'
+require 'toystore'
 
 # Standard Library Dependencies
 require 'securerandom'

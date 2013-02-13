@@ -4,6 +4,7 @@ module Device
     extend  ::EphemeralAttributes
     include ::Identifiable
     include ::Persistable::Member
+    include Toy::Store
 
     def initialize(params = {})
       @adapter = params.fetch(:adapter, default_adapter)
