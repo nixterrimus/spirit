@@ -1,15 +1,15 @@
 module Device
   class Base
-    attr_accessor :adapter, :configuration, :adapter_uuid
+    #attr_accessor :adapter, :configuration, :adapter_uuid
     extend  ::EphemeralAttributes
     include ::Identifiable
     include ::Persistable::Member
     include Toy::Store
 
-    def initialize(params = {})
-      @adapter = params.fetch(:adapter, default_adapter)
-      @configuration = params.fetch(:configuration, default_configuration)
-    end
+    #def initialize(params = {})
+      #@adapter = params.fetch(:adapter, default_adapter)
+      #@configuration = params.fetch(:configuration, default_configuration)
+    #end
 
     # Eventually need to be wrapped up to handle problems with talking
     #  to the real world (ie, begin resuce).  Don't want to assume that
