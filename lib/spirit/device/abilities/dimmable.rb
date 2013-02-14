@@ -1,9 +1,10 @@
-module Device::Abilities::Dimmable
-  extend ActiveSupport::Concern
-  include Toy::Object
+module Abilities
+  module Dimmable
+    extend ActiveSupport::Concern
 
-  included do
-    attribute :level, Integer, :default => 0
-    validates :level, :inclusion => 0..100
+    included do
+      attribute :level, Integer, :default => 0
+      validates :level, :inclusion => 0..100
+    end
   end
 end

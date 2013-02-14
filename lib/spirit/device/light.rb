@@ -1,3 +1,3 @@
-class Device::Light < Device::Base
-  include Device::Abilities::Switchable
+class Light < Device
+  include Abilities::Switchable
 end

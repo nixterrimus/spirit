@@ -8,7 +8,6 @@ require 'singleton'
 
 #Internal Dependencies
 require "spirit/version"
-require "spirit/persistance"
 require "spirit/adapters"
 require "spirit/devices"
 require "spirit/presets"
@@ -49,6 +48,12 @@ module Spirit
 
     def initialize
       @persistance_store = Moneta.new(:Memory)
+    end
+
+    def persistance_store=(store)
+      @persistance_store = store
+      Device.adapter :memory, @persistance_store
+      Adapter::Base.adapter :memory, @persistance_store      
     end
   end
 end

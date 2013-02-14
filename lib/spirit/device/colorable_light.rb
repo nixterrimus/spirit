@@ -1,6 +1,6 @@
-class Device::ColorableLight < Device::Base
-  include Device::Abilities::Switchable
-  include Device::Abilities::Dimmable
-  include Device::Abilities::Colorable
+class ColorableLight < Device
+  include Abilities::Switchable
+  include Abilities::Dimmable
+  include Abilities::Colorable
 end
 
