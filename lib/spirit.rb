@@ -48,12 +48,22 @@ module Spirit
 
     def initialize
       @persistance_store = Moneta.new(:Memory)
+      update_adapters
     end
 
     def persistance_store=(store)
       @persistance_store = store
+      update_adapters
+    end
+
+    private
+
+    def update_adapters
       Device.adapter :memory, @persistance_store
-      Adapter::Base.adapter :memory, @persistance_store      
+      Light.adapter :memory, @persistance_store
+      DimmableLight.adapter :memory, @persistance_store
+      ColorableLight.adapter :memory, @persistance_store
+      Adapter::Base.adapter :memory, @persistance_store
     end
   end
 end
