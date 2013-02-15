@@ -3,7 +3,6 @@ require 'moneta'
 require 'toystore'
 
 # Standard Library Dependencies
-require 'securerandom'
 require 'singleton'
 
 #Internal Dependencies
