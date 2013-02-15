@@ -5,6 +5,7 @@ class Device
 
   attribute :device_adapter_id, String
   after_save :apply_state
+  after_save :add_to_all_pool
 
   # Eventually need to be wrapped up to handle problems with talking
   #  to the real world (ie, begin resuce).  Don't want to assume that
@@ -30,13 +31,31 @@ class Device
     ability_modules.collect { |m| ability_module_to_s(m) }
   end
 
-  private
-
-  def load_device_adapter
-    self.device_adapter = (Adapter::Base.read(device_adapter_id) || default_adapter)
+  def self.all_ids
+    adapter.read(all_persistence_key)
   end
 
-  def default_adapter
+  def self.all_persistence_key
+    'devices'
+  end
+
+  def self.all
+    self.all_ids.collect { |id| self.read(id) }
+  end
+
+  private
+
+  def add_to_all_pool
+    known_ids = self.class.all_ids || []
+    all = known_ids.push(self.id)
+    adapter.write(self.class.all_persistence_key, all)
+  end
+
+  def load_device_adapter
+    self.device_adapter = (Adapter::Base.read(device_adapter_id) || default_device_adapter)
+  end
+
+  def default_device_adapter
     Adapter::NilAdapter.new
   end
 
@@ -52,3 +71,7 @@ class Device
     m.to_s.downcase.split('::').last
   end
 end
+
+require 'spirit/device/light'
+require 'spirit/device/colorable_light'
+require 'spirit/device/dimmable_light'

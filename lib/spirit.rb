@@ -9,8 +9,8 @@ require 'singleton'
 #Internal Dependencies
 require "spirit/version"
 require "spirit/adapters"
-require "spirit/devices"
 require "spirit/presets"
+require 'spirit/device/device'
 
 
 module Spirit
@@ -28,7 +28,7 @@ module Spirit
   end
 
   def self.devices
-    @devices ||= Devices.find_or_initialize(self.persistance)
+    Device.all
   end
 
   def self.presets
