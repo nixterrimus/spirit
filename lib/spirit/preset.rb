@@ -1,16 +1,22 @@
 class Preset
+  include Toy::Store
+
+  attribute :target_value, Hash
+  attribute :device_ids, Array
 
   def add_device(device)
-    device_target_attributes[device.uuid] = device.ephemeral_attribute_values
+    raise "Device not persisted" unless device.persisted?
+    device_ids << device.id
+    target_value[device.id] = filtered_attributes(device)
   end
 
-  def device_uuids
-    device_target_attributes.keys
+  def devices
+    Device.read(device_ids)
   end
 
   private
 
-  def device_target_attributes
-    @devices ||= Hash.new
+  def filtered_attributes(device)
+    device.attributes.except("type", "id")
   end
 end
