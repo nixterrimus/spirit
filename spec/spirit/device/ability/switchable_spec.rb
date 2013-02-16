@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-shared_examples_for Device::Abilities::Switchable do |device|
+shared_examples_for Abilities::Switchable do |device|
 
   it 'responds to binary_state' do
     expect { device.binary_state }.to_not raise_error(NoMethodError)

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Device::Base do
+describe Device do
   let(:adapter) { OpenStruct.new }
   subject { Device::Base.new }
   describe 'initialization' do

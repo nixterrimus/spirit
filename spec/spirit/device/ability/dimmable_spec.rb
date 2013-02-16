@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-shared_examples_for Device::Abilities::Dimmable do |device|
+shared_examples_for Abilities::Dimmable do |device|
   let(:too_low_value) { device.min_level - 1 }
   let(:too_high_value) { device.max_level + 1}
 

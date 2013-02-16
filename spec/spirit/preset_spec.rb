@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Preset do
-  it_should_behave_like Identifiable, Preset.new
   subject { Preset.new }
   let(:device) { Device::Light.new }
   let(:ephemeral_attribute_values) { { a: 1, b: 2 } }
