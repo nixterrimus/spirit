@@ -1,5 +1,6 @@
 class Preset
   include Toy::Store
+  include Toy::Store::All
 
   attribute :target_value, Hash
   attribute :device_ids, Array

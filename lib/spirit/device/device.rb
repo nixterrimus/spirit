@@ -2,6 +2,7 @@ Dir[File.join(File.dirname(__FILE__), 'abilities', '*.rb')].each {|file| require
 
 class Device
   include Toy::Store
+  include Toy::Store::All
 
   attribute :device_adapter_id, String
   after_save :apply_state
@@ -31,25 +32,7 @@ class Device
     ability_modules.collect { |m| ability_module_to_s(m) }
   end
 
-  def self.all_ids
-    adapter.read(all_persistence_key)
-  end
-
-  def self.all_persistence_key
-    'devices'
-  end
-
-  def self.all
-    self.all_ids.collect { |id| self.read(id) }
-  end
-
   private
-
-  def add_to_all_pool
-    known_ids = self.class.all_ids || []
-    all = known_ids.push(self.id)
-    adapter.write(self.class.all_persistence_key, all)
-  end
 
   def load_device_adapter
     self.device_adapter = (Adapter::Base.read(device_adapter_id) || default_device_adapter)

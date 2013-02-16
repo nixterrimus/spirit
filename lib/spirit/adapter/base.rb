@@ -1,6 +1,7 @@
 module Adapter
   class Base
     include Toy::Store
+    include Toy::Store::All
 
     attr_accessor :setup_complete
 

@@ -7,8 +7,9 @@ require 'singleton'
 
 #Internal Dependencies
 require "spirit/version"
+require "spirit/all"
 require "spirit/adapters"
-require "spirit/presets"
+require "spirit/preset"
 require 'spirit/device/device'
 
 
@@ -31,11 +32,11 @@ module Spirit
   end
 
   def self.presets
-    @presets ||= Presets.find_or_initialize(self.persistance)
+    Preset.all
   end
 
   def self.adapters
-    @adapters ||= Adapters.find_or_initialize(self.persistance)
+    Adapter.all
   end
 
   def self.configuration
@@ -60,6 +61,7 @@ module Spirit
     def update_adapters
       Device.adapter :memory, @persistance_store
       Light.adapter :memory, @persistance_store
+      Preset.adapter :memory, @persistance_store
       DimmableLight.adapter :memory, @persistance_store
       ColorableLight.adapter :memory, @persistance_store
       Adapter::Base.adapter :memory, @persistance_store
