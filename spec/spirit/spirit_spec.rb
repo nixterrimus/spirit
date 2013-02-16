@@ -1,4 +1,3 @@
-require 'spec_helper'
 
 describe Spirit do
   describe 'devices' do
@@ -22,16 +21,6 @@ describe Spirit do
   describe 'presets' do
     it 'returns a list' do
       expect(Spirit.presets).to be_empty
-    end
-  end
-
-  describe 'persistance' do
-    it 'returns an object store' do
-      expect(Spirit.persistance.class).to be(ObjectStore)
-    end
-
-    it 'always returns the same instance' do
-      expect(Spirit.persistance).to be(Spirit.persistance)
     end
   end
 
