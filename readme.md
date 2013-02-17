@@ -61,9 +61,9 @@ Devices are really small and simple classes.  For example, here's one
 for a basic dimmable light:
 
 ```ruby
-class Device::DimmableLight < Device::Base
-  include Device::Abilities::Switchable
-  include Device::Abilities::Dimmable
+class DimmableLight < Device::Base
+  include Abilities::Switchable
+  include Abilities::Dimmable
 end
 ```
 
@@ -113,6 +113,10 @@ You can get a list of adapters by calling:
 ```
 Spirit.adapters
 ```
+
+## Presets
+
+## Triggers
 
 ## Okay, who's involved with this?
 
