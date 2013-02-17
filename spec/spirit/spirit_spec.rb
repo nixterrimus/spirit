@@ -1,26 +1,17 @@
+require 'spec_helper'
 
 describe Spirit do
-  describe 'devices' do
-    let(:devices) { 3.times.collect { Device::Light.new } }
-    context 'when there are no devices' do
-      it 'is empty' do
-        expect(Spirit.devices).to be_empty
-      end
-      context 'when there are devices' do
-        it 'returns a list of devices' do
-          devices.each { |d| Spirit.devices <<  d }
-          expect(Spirit.devices.length).to be(3)
-          devices.each do |device|
-            expect(Spirit.devices.include? device).to be_true
-          end
-        end
-      end
+  describe '#devices' do
+    it 'delegates to Device.all' do
+      Device.should_receive(:all).once
+      Spirit.devices
     end
   end
 
-  describe 'presets' do
-    it 'returns a list' do
-      expect(Spirit.presets).to be_empty
+  describe '#presets' do
+    it 'delegates to Preset.all' do
+      Preset.should_receive(:all).once
+      Spirit.presets
     end
   end
 
