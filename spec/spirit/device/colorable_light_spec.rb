@@ -1,10 +1,11 @@
 require 'spec_helper'
 
-describe DimmableLight do
-  subject { DimmableLight.new }
+describe ColorableLight do
+  subject { ColorableLight.new }
 
   its(:abilities) { should(include 'switchable') }
   its(:abilities) { should(include 'dimmable') }
+  its(:abilities) { should(include 'colorable') }
   
-end
 
+end

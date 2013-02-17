@@ -1,16 +1,16 @@
 # External Dependencies
 require 'moneta'
+require 'toystore'
 
 # Standard Library Dependencies
-require 'securerandom'
 require 'singleton'
 
 #Internal Dependencies
 require "spirit/version"
-require "spirit/persistance"
+require "spirit/all"
 require "spirit/adapters"
-require "spirit/devices"
-require "spirit/presets"
+require "spirit/preset"
+require 'spirit/device/device'
 
 
 module Spirit
@@ -28,15 +28,15 @@ module Spirit
   end
 
   def self.devices
-    @devices ||= Devices.find_or_initialize(self.persistance)
+    Device.all
   end
 
   def self.presets
-    @presets ||= Presets.find_or_initialize(self.persistance)
+    Preset.all
   end
 
   def self.adapters
-    @adapters ||= Adapters.find_or_initialize(self.persistance)
+    Adapter.all
   end
 
   def self.configuration
@@ -48,6 +48,24 @@ module Spirit
 
     def initialize
       @persistance_store = Moneta.new(:Memory)
+      update_adapters
+    end
+
+    def persistance_store=(store)
+      @persistance_store = store
+      update_adapters
+    end
+
+    private
+
+    def update_adapters
+     persisted_classes.each { |c| c.adapter :memory, @persistance_store }
+    end
+
+    def persisted_classes
+      # TODO: Do better than just listing these out, find this list
+      #   programmatically
+      [Device, Light, Preset, DimmableLight, ColorableLight, Adapter::Base]
     end
   end
 end

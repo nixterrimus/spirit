@@ -1,7 +1,7 @@
 module Adapter
   class Base
-    include ::Identifiable
-    include ::Persistable::Member
+    include Toy::Store
+    include Toy::Store::All
 
     attr_accessor :setup_complete
 
@@ -77,13 +77,6 @@ module Adapter
 
     def settings=(hash)
       @settings = settings.merge!(hash)
-    end
-
-    def to_hash
-      {
-        uuid: uuid,
-        settings: { one: Setting.new },
-      }
     end
 
   end

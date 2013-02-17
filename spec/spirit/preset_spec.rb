@@ -1,24 +1,36 @@
 require 'spec_helper'
 
 describe Preset do
-  it_should_behave_like Identifiable, Preset.new
   subject { Preset.new }
-  let(:device) { Device::Light.new }
-  let(:ephemeral_attribute_values) { { a: 1, b: 2 } }
+  let(:device) { Light.new }
 
-  describe 'adding a device' do
-    it 'stores the devices empheral attributes' do
-      device.should_receive(:ephemeral_attribute_values).once.and_return(ephemeral_attribute_values)
-      subject.add_device(device)
+  describe '#add_device' do
+    context 'when the device is not persisted' do
+      it 'raises an error' do
+        expect{ subject.add_device(device) }.to raise_error
+      end
+    end
+
+    context 'when the device is persisted' do
+      before do
+        device.stub(:persisted?).and_return(true)
+      end
+      it 'saves the device_id' do
+        subject.add_device(device)
+        expect(subject.device_ids).to include(device.id)
+      end
+
+      it 'gets the device attributes' do
+        device.should_receive(:attributes).once.and_call_original
+        subject.add_device(device)
+      end
     end
   end
 
-  describe 'device_uuids' do
-    before do
-      subject.add_device(device)
-    end
-    it 'returns a list of all devices that are part of the preset' do
-      subject.device_uuids.should include device.uuid
+  describe "#devices" do
+    it 'reads from the persistence store' do
+      Device.should_receive(:read).once
+      subject.devices
     end
   end
 end

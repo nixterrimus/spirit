@@ -1,8 +1,6 @@
-module Device
-  class ColorableLight < Device::Base
-    #include Capability::Switchable
-    #include Capability::Dimmable
-    #include Capability::Colorable
-    #include Capability::Identifiable
-  end
+class ColorableLight < Device
+  include Abilities::Switchable
+  include Abilities::Dimmable
+  include Abilities::Colorable
 end
+
