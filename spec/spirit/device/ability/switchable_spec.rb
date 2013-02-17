@@ -1,26 +1,28 @@
 require 'spec_helper'
 
-shared_examples_for Abilities::Switchable do |device|
+class TestDevice < Device
+  include Abilities::Switchable
+end
 
-  it 'responds to binary_state' do
-    expect { device.binary_state }.to_not raise_error(NoMethodError)
+describe Abilities::Switchable do |device|
+  subject{ TestDevice.new }
+
+  describe 'attributes' do
+    it 'has a binary_sate attribute' do
+      expect(subject.attributes).to include('binary_state')
+    end
   end
 
-  describe 'binary state' do
-    it 'defaults to unknown state' do
-      expect(device.binary_state).to be(:unknown)
-    end
-
-  end
-
-  describe 'setting binary state' do
-    it 'accepts valid states' do
-      device.binary_state = :on
-      expect(device.binary_state).to be(:on)
-    end
-
-    it 'rejects invalid state' do
-      expect{ device.binary_state = :searching }.to raise_error
+  describe 'validations' do
+    describe 'binary_sate' do
+      it 'validates :on is valid' do
+        subject.binary_state  = :on
+        expect(subject.valid?).to be(true)
+      end
+      it 'validates :off is valid' do
+        subject.binary_state  = :off
+        expect(subject.valid?).to be(true)
+      end
     end
   end
 end
