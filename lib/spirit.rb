@@ -59,12 +59,13 @@ module Spirit
     private
 
     def update_adapters
-      Device.adapter :memory, @persistance_store
-      Light.adapter :memory, @persistance_store
-      Preset.adapter :memory, @persistance_store
-      DimmableLight.adapter :memory, @persistance_store
-      ColorableLight.adapter :memory, @persistance_store
-      Adapter::Base.adapter :memory, @persistance_store
+     persisted_classes.each { |c| c.adapter :memory, @persistance_store }
+    end
+
+    def persisted_classes
+      # TODO: Do better than just listing these out, find this list
+      #   programmatically
+      [Device, Light, Preset, DimmableLight, ColorableLight, Adapter::Base]
     end
   end
 end

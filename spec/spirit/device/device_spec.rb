@@ -16,6 +16,10 @@ describe Device do
     end
   end
 
+  describe '#device_adapter' do
+
+  end
+
   describe '#abilities' do
     before do
       abilities = [ Device::Abilities::Switchable ]
