@@ -12,7 +12,7 @@ class Device
   #  to the real world (ie, begin resuce).  Don't want to assume that
   #  they are always going to work
   def apply_state
-    device_adapter.apply_device_state(self)
+    device_adapter.apply_device_state(self.attributes)
   end
 
   def device_adapter
@@ -20,12 +20,8 @@ class Device
   end
 
   def device_adapter=(device_adapter)
-    self.device_adapter_id = device_adapter.id
     @device_adapter = device_adapter
-  end
-
-  def get_updated_state
-    adapter.update_device_state(self)
+    self.device_adapter_id = device_adapter.try(:id)
   end
 
   def abilities
