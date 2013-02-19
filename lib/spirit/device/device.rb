@@ -9,8 +9,8 @@ class Device
   after_save :add_to_all_pool
 
   def apply_state
-    device_adapter.apply(self.attributes) unless device_adapter.nil?
-    #device_adapter.async.apply_device_state(self.attributes)
+    #device_adapter.apply(self.attributes) unless device_adapter.nil?
+    device_adapter.async.apply(self.attributes) unless device_adapter.nil?
   end
 
   def device_adapter

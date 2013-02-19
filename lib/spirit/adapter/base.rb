@@ -4,15 +4,9 @@ module Adapter
     include Toy::Store::All
     include Celluloid
 
-    attr_accessor :setup_complete
+    include Toy::Store::Celluloid
 
-    def self.load(id, attrs)
-      puts "calling with #{id}"
-      attrs ||= {}
-      instance = constant_from_attrs(attrs).allocate
-      instance.initialize_from_database(attrs.update('id' => id))
-      instance.nil? ? nil : Actor.new(instance, actor_options).proxy
-    end
+    attr_accessor :setup_complete
 
     class Setting
       attr_accessor :value_type, :current_value, :description

@@ -7,6 +7,7 @@ require 'celluloid'
 require 'singleton'
 
 #Internal Dependencies
+require 'spirit/toy/celluloid'
 require "spirit/version"
 require "spirit/all"
 require "spirit/adapters"
