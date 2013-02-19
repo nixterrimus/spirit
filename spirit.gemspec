@@ -19,10 +19,13 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency "moneta"
   gem.add_runtime_dependency "toystore"
+  gem.add_runtime_dependency "celluloid"
+
+  gem.add_runtime_dependency 'huey'
+  gem.add_runtime_dependency 'color-tools'
 
   gem.add_development_dependency "rspec", "~> 2.6"
   gem.add_development_dependency "pry"
-
   gem.add_development_dependency "guard"
   gem.add_development_dependency "guard-rspec"
 end

@@ -1,6 +1,7 @@
 # External Dependencies
 require 'moneta'
 require 'toystore'
+require 'celluloid'
 
 # Standard Library Dependencies
 require 'singleton'
