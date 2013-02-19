@@ -1,3 +1,5 @@
+require 'huey'
+
 class Adapter::HueAdapter < Adapter::Base
 
   creator "Nick Rowe"
@@ -14,8 +16,12 @@ class Adapter::HueAdapter < Adapter::Base
     number :fade_time, description: "Fade time in milliseconds"
   end
 
-  def apply_device_state(device)
-    hue.all_lights.write light_attributes(device)
+  def apply(attributes)
+    bulb = light_for(attributes)
+    bulb.rgb = hex_color(attributes)
+    bulb.bri = brightness(attributes)
+    bulb.on = on?(attributes)
+    bulb.commit
   end
 
   def update_device_state(device)
@@ -24,29 +30,25 @@ class Adapter::HueAdapter < Adapter::Base
 
   private
 
-  def hue
-    @hue ||= Hue::Hue.new(ip: adapter_address)
+  def light_for(attributes)
+    # Eventually look up the bulb based on id
+    Huey::Bulb.find(12)
   end
 
-  def light_attributes(device)
-    {
-      on: device.binary_state,
-      bri: hue_brightness(device),
-      hue: hue_hue(device),
-      sat: hue_saturation(device),
-    }
+  def on?(attributes)
+    attributes["binary_state"] == :on
   end
 
-  def hue_brightness(device)
-    (device.brightness * 2.55).floor
+  def brightness(attributes)
+    (attributes["level"] * 2.55).floor
   end
 
-  def hue_hue(device)
-    40000
-  end
+  def hex_color(attributes)
+    red = (attributes["red_level"] * 2.55).floor
+    green = (attributes["green_level"] * 2.55).floor
+    blue = (attributes["blue_level"] * 2.55).floor
 
-  def hue_saturation(device)
-    200
+    "#%02X%02X%02X" % [red, green, blue]
   end
 
 end
