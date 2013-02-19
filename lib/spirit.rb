@@ -65,7 +65,12 @@ module Spirit
     def persisted_classes
       # TODO: Do better than just listing these out, find this list
       #   programmatically
-      [Device, Light, Preset, DimmableLight, ColorableLight, Adapter::Base]
+      [Device, Light, Preset, DimmableLight, ColorableLight] + persisted_adapters
+    end
+
+    def persisted_adapters
+      adapters = Adapter.constants.select {|c| Adapter.const_get(c).is_a?(Class) && Adapter.const_get(c).respond_to?('adapter') }
+      adapters.collect { |c| Adapter.const_get(c) }
     end
   end
 end
