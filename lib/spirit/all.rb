@@ -19,6 +19,14 @@ module Toy
         def all_persistence_key
           "#{self.to_s.downcase}s"
         end
+
+        def first
+          self.all.first
+        end
+
+        def last
+          self.all.last
+        end
       end
 
       private
