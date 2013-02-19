@@ -34,6 +34,7 @@ module Toy
       def add_to_all_pool
         known_ids = self.class.all_ids || []
         all = known_ids.push(self.id)
+        all = all.uniq
         adapter.write(self.class.all_persistence_key, all)
       end
     end
