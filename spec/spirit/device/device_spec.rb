@@ -16,20 +16,9 @@ describe Device do
 
   describe "#device_adapter" do
     context 'when a device adapter is already set' do
-      before do
-        subject.device_adapter = fake_adapter
-      end
       it 'returns that adapter' do
+        subject.device_adapter = fake_adapter
         expect(subject.device_adapter).to be(fake_adapter)
-      end
-    end
-
-    context 'when the device adapter is nil' do
-      before do
-        subject.device_adapter = nil
-      end
-      it 'returns a default adapter' do
-        expect(subject.device_adapter).to_not be(nil)
       end
     end
   end

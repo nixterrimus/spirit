@@ -1,6 +1,7 @@
 class Adapter::NilAdapter < Adapter::Base
 
-  def apply_device_state(device)
+  def apply(attributes)
+    sleep 3
     nil
   end
 
