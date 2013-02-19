@@ -84,3 +84,6 @@ module Adapter
 
   end
 end
+
+require 'spirit/adapter/nil_adapter'
+require 'spirit/adapter/hue_adapter'

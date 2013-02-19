@@ -10,7 +10,7 @@ require 'singleton'
 require 'spirit/toy/celluloid'
 require "spirit/version"
 require "spirit/all"
-require "spirit/adapters"
+require "spirit/adapter/base"
 require "spirit/preset"
 require 'spirit/device/device'
 
