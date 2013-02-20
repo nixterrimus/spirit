@@ -39,8 +39,8 @@ class Adapter::HueAdapter < Adapter::Base
   private
 
   def light_for(attributes)
-    # Eventually look up the bulb based on id
-    Huey::Bulb.find(12)
+    id = attributes["device_adapter_identifier"]
+    Huey::Bulb.find(id.to_i)
   end
 
   def on?(attributes)
