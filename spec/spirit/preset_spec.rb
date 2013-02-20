@@ -29,6 +29,7 @@ describe Preset do
 
   describe "#devices" do
     it 'reads from the persistence store' do
+      subject.stub(:device_ids).and_return( [1] )
       Device.should_receive(:read).once
       subject.devices
     end
