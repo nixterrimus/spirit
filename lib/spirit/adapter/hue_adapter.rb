@@ -24,6 +24,14 @@ class Adapter::HueAdapter < Adapter::Base
     bulb.commit
   end
 
+  # need something to map device.id => adapter device's identifiers (could be ip, id, etc)
+  #   since adapter implements ColorableLight it should only create colorablelights
+  #   adapter trakcs device.id => adapter's identifier
+  #   create new colorablelight if adapter identifier not mapped to device
+  def discover
+    Huey::Bulb.all.each { |b| ColorableLight.create( device_adapter_id: self.id, device_adapter_identifier: b.id) }
+  end
+
   def update_device_state(device)
     nil
   end
