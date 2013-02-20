@@ -5,11 +5,12 @@ class Device
   include Toy::Store::All
 
   attribute :device_adapter_id, String
-  after_save :apply_state
 
   # How the adapter distinguishes this device from other devices
   #   it manages.  For example ip address, node number, unique id
   attribute :device_adapter_identifier, String
+
+  after_update :apply_state
   after_save :add_to_all_pool
 
   def apply_state

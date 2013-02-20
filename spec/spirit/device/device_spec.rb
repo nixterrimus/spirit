@@ -30,10 +30,10 @@ describe Device do
     end
   end
 
-  describe "after saving" do
+  describe "after updating" do
     it 'applies the current state' do
-      subject.should_receive(:apply_state).once
-      subject.save
+      subject.should_receive(:apply_state)
+      subject.send(:update)
     end
   end
 end
