@@ -13,6 +13,15 @@ class Device
   after_update :apply_state
   after_save :add_to_all_pool
 
+  validate :device_uniqueness
+
+  def device_uniqueness
+    pool = ColorableLight.all.select { |d| d.device_adapter_id == device_adapter_id }
+    pool = pool.select { |d| d.device_adapter_identifier == device_adapter_identifier }
+    if !persisted? && !pool.empty? 
+      errors.add(:device_adapter_identifier, "device already exists")
+    end
+  end
   def apply_state
     #device_adapter.apply(self.attributes) unless device_adapter.nil?
     device_adapter.async.apply(self.attributes) unless device_adapter.nil?
