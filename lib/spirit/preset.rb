@@ -12,7 +12,13 @@ class Preset
   end
 
   def devices
-    Device.read(device_ids)
+    device_ids.collect { |device_id| Device.read(device_id) }
+  end
+
+  def apply
+    devices.each do |device|
+      device.update_attributes(target_value[device.id])
+    end
   end
 
   private
