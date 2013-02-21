@@ -14,6 +14,20 @@ describe Device do
     end
   end
 
+  describe 'uniqness' do
+    context 'on create' do
+      let(:device_adapter_id) { 1 }
+      let(:device_adapter_identifier) { 1 }
+      it "validates there's only one device with the same device_adapter_id and device_adapter_identifier" do
+        Device.create( device_adapter_identifier: device_adapter_identifier, device_adapter_id: device_adapter_id)
+        expect do
+         Device.create!( device_adapter_identifier: device_adapter_identifier, device_adapter_id: device_adapter_id)
+        end.to raise_error
+      end
+    end
+
+  end
+
   describe '#abilities' do
     before do
       abilities = [ Abilities::Switchable ]
