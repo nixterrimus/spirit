@@ -4,11 +4,12 @@ class Device
   include Toy::Store
   include Toy::Store::All
 
-  attribute :device_adapter_id, String
+  attribute :device_adapter_id, String, default: nil
+  attribute :name, String, default: "Device"
 
   # How the adapter distinguishes this device from other devices
   #   it manages.  For example ip address, node number, unique id
-  attribute :device_adapter_identifier, String
+  attribute :device_adapter_identifier, String, default: nil
 
   after_update :apply_state
   after_save :add_to_all_pool
@@ -22,9 +23,10 @@ class Device
       errors.add(:device_adapter_identifier, "device already exists")
     end
   end
+
   def apply_state
-    #device_adapter.apply(self.attributes) unless device_adapter.nil?
-    device_adapter.async.apply(self.attributes) unless device_adapter.nil?
+    device_adapter.apply(self.attributes) unless device_adapter.nil?
+    #device_adapter.async.apply(self.attributes) unless device_adapter.nil?
   end
 
   def device_adapter

@@ -4,6 +4,16 @@ describe Device do
   subject { Device.new }
   let(:fake_adapter) { OpenStruct.new( { id: 123 }) }
 
+  its(:attributes) { should include 'device_adapter_id' }
+  its(:attributes) { should include 'device_adapter_identifier' }
+  its(:attributes) { should include 'name' }
+
+  describe '#name' do
+    it 'defaults to device' do
+      expect(subject.name).to eql('Device')
+    end
+  end
+
   describe '#abilities' do
     before do
       abilities = [ Abilities::Switchable ]
