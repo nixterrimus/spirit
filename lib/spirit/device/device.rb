@@ -12,7 +12,6 @@ class Device
   attribute :device_adapter_identifier, String, default: nil
 
   after_update :apply_state
-  after_save :add_to_all_pool
 
   validate :device_uniqueness
 

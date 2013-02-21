@@ -25,7 +25,6 @@ describe Device do
         end.to raise_error
       end
     end
-
   end
 
   describe '#abilities' do
