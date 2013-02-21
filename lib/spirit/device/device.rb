@@ -16,8 +16,10 @@ class Device
   validate :device_uniqueness
 
   def device_uniqueness
-    pool = self.class.all.select { |d| d.device_adapter_id == device_adapter_id }
-    pool = pool.select { |d| d.device_adapter_identifier == device_adapter_identifier }
+    pool = self.class.all.select do|check_device| 
+      check_device.device_adapter_id == device_adapter_id && 
+        check_device.device_adapter_identifier == device_adapter_identifier
+    end
     if !persisted? && !pool.empty? 
       errors.add(:device_adapter_identifier, "device already exists")
     end
