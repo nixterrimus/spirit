@@ -2,9 +2,9 @@ module Adapter
   class Base
     include Toy::Store
     include Toy::Store::All
-    include Celluloid
+    #include Celluloid
 
-    include Toy::Store::Celluloid
+    #include Toy::Store::Celluloid
 
     attr_accessor :setup_complete
 
@@ -48,7 +48,7 @@ module Adapter
         end
       end
 
-      attr_rw :creator, :adapts_to, :website
+      attr_rw :creator, :adapts_to, :website, :user_can_manually_add_devices
 
       def implements(*devices)
         @implemented_devices ||= []
@@ -63,6 +63,10 @@ module Adapter
       def requires_setup(setup_value=nil)
         return (@requires_setup || false) if setup_value.nil?
         @requires_setup = setup_value
+      end
+
+      def setup &block
+        # tba
       end
     end
 

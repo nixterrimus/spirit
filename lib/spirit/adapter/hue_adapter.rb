@@ -9,11 +9,23 @@ class Adapter::HueAdapter < Adapter::Base
   implements :colorable_light
 
   requires_setup true
+  user_can_manually_add_devices false
 
   settings do
     ip_address :adapter_address, required: true, description: "The network address of the white puck-shaped hue base station."
     string :base_station_name
     number :fade_time, description: "Fade time in milliseconds"
+  end
+
+  setup do
+    step(:find_base_station) do
+      # Things to find base station
+      true # when base station is found
+    end
+    step(:ask_user_to_press_button) do
+      true # when button has been pressed
+    end
+    step(:settings) # A special step that shows a settings page based on settings defined above
   end
 
   def apply(attributes)
@@ -24,16 +36,16 @@ class Adapter::HueAdapter < Adapter::Base
     bulb.commit
   end
 
-  # need something to map device.id => adapter device's identifiers (could be ip, id, etc)
-  #   since adapter implements ColorableLight it should only create colorablelights
-  #   adapter trakcs device.id => adapter's identifier
-  #   create new colorablelight if adapter identifier not mapped to device
-  def discover
-    Huey::Bulb.all.each { |b| ColorableLight.create( device_adapter_id: self.id, device_adapter_identifier: b.id) }
+  def current_state_of(device)
+    bulb = light_for(attributes)
+    attributes = {
+      binary_state: bulb.on ? :on : :off
+    }
+    device.update_attributes(attributes)
   end
 
-  def update_device_state(device)
-    nil
+  def discover
+    Huey::Bulb.all.each { |b| ColorableLight.create( device_adapter_id: self.id, device_adapter_identifier: b.id) }
   end
 
   private
