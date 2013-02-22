@@ -25,10 +25,6 @@ module Spirit
     yield(configuration)
   end
 
-  def self.persistance
-    @persistance ||= ObjectStore.new(self.configuration.persistance_store)
-  end
-
   def self.devices
     Device.all
   end
