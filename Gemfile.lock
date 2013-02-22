@@ -11,6 +11,7 @@ PATH
   specs:
     spirit (0.0.1)
       celluloid
+      color-tools
       huey
       moneta
       toystore
@@ -78,7 +79,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  color-tools
   guard
   guard-rspec
   huey!
