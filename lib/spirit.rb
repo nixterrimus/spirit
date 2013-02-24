@@ -1,13 +1,13 @@
 # External Dependencies
 require 'moneta'
 require 'toystore'
-require 'celluloid'
+require 'sucker_punch'
 
 # Standard Library Dependencies
 require 'singleton'
 
 #Internal Dependencies
-require 'spirit/toy/celluloid'
+require 'spirit/workers/adapter'
 require "spirit/version"
 require "spirit/all"
 require "spirit/adapter/base"
@@ -46,6 +46,11 @@ module Spirit
 
     def initialize
       @persistance_store = Moneta.new(:Memory)
+
+      SuckerPunch.config do
+        queue name: :adapters, worker: ::Worker::AdapterWorker, size: 2
+      end
+
       update_adapters
     end
 

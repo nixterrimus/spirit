@@ -36,7 +36,7 @@ class Adapter::HueAdapter < Adapter::Base
     bulb.commit
   end
 
-  def current_state_of(device)
+  def poll(device)
     bulb = light_for(attributes)
     attributes = {
       binary_state: bulb.on ? :on : :off

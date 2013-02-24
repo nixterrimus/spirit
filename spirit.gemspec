@@ -23,6 +23,7 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency 'huey'
   gem.add_runtime_dependency 'color-tools'
+  gem.add_runtime_dependency 'sucker_punch'
 
   gem.add_development_dependency "rspec", "~> 2.6"
   gem.add_development_dependency "pry"

@@ -41,8 +41,11 @@ class Device
   private
 
   def apply_state
-    device_adapter.apply(self.attributes) unless device_adapter.nil?
-    #device_adapter.async.apply(self.attributes) unless device_adapter.nil?
+    device_adapter_worker.perform!(id, device_adapter_id)
+  end
+
+  def device_adapter_worker
+    SuckerPunch::Queue[:adapters]
   end
 
   def ability_modules
