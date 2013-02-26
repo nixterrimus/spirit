@@ -2,6 +2,8 @@ class EventListener
 
   include Celluloid
 
+  # Gets the event and translates that event into a proper class or discards it
+  #   For example events.sunrise might become Event::Sun::Sunrise
   def listen
     redis.psubscribe('events.*') do |on|
       on.pmessage do |pattern, channel, message|
