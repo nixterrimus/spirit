@@ -12,6 +12,7 @@ require "spirit/version"
 require "spirit/all"
 require "spirit/adapter/base"
 require "spirit/preset"
+require "spirit/trigger"
 require 'spirit/device/device'
 
 
