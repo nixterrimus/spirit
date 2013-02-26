@@ -20,10 +20,13 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency "moneta"
   gem.add_runtime_dependency "toystore"
   gem.add_runtime_dependency "celluloid"
+  gem.add_runtime_dependency "redis"
+  gem.add_runtime_dependency 'sucker_punch'
 
+  # Added for hue_adapter, to remove when hue adapter
+  #  is broken out
   gem.add_runtime_dependency 'huey'
   gem.add_runtime_dependency 'color-tools'
-  gem.add_runtime_dependency 'sucker_punch'
 
   gem.add_development_dependency "rspec", "~> 2.6"
   gem.add_development_dependency "pry"

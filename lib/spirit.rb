@@ -2,6 +2,7 @@
 require 'moneta'
 require 'toystore'
 require 'sucker_punch'
+require 'redis'
 
 # Standard Library Dependencies
 require 'singleton'
@@ -12,7 +13,8 @@ require "spirit/version"
 require "spirit/all"
 require "spirit/adapter/base"
 require "spirit/preset"
-require "spirit/trigger"
+require "spirit/triggers/event_listener"
+require "spirit/triggers/trigger"
 require 'spirit/device/device'
 
 
