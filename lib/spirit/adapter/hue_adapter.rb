@@ -30,9 +30,13 @@ class Adapter::HueAdapter < Adapter::Base
 
   def apply(attributes)
     bulb = light_for(attributes)
-    bulb.rgb = hex_color(attributes)
-    bulb.bri = brightness(attributes)
     bulb.on = on?(attributes)
+ 
+    if on?(attributes)
+      bulb.rgb = hex_color(attributes)
+      bulb.bri = brightness(attributes)
+    end
+
     bulb.commit
   end
 
