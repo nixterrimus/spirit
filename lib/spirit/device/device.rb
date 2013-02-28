@@ -16,6 +16,7 @@ class Device
   validate :device_uniqueness
 
   def device_uniqueness
+    return if device_adapter_id.nil?
     pool = self.class.all.select do|check_device| 
       check_device.device_adapter_id == device_adapter_id && 
         check_device.device_adapter_identifier == device_adapter_identifier
