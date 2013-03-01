@@ -17,7 +17,7 @@ module Toy
         end
 
         def all_persistence_key
-          "#{self.to_s.downcase}s"
+          ActiveModel::Naming.plural(self)
         end
 
         def persistence_keys
