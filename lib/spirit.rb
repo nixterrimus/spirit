@@ -24,8 +24,8 @@ module Spirit
   end
 
   def self.configure
-    self.configuration ||= Configuration.new
-    yield(configuration)
+    configuration = self.configuration
+    yield(configuration) if block_given?
   end
 
   def self.devices
@@ -48,7 +48,7 @@ module Spirit
     attr_accessor :persistance_store
 
     def initialize
-      @persistance_store = Moneta.new(:Memory)
+      @persistance_store = Moneta.new(:File, dir: "./persistence")
 
       SuckerPunch.config do
         queue name: :adapters, worker: ::Worker::AdapterWorker, size: 2
@@ -80,3 +80,5 @@ module Spirit
     end
   end
 end
+
+Spirit.configure
