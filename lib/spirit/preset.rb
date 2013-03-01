@@ -5,6 +5,8 @@ class Preset
   attribute :target_value, Hash
   attribute :device_ids, Array
 
+  attribute :name, String
+
   def add_device(device)
     raise "Device not persisted" unless device.persisted?
     device_ids << device.id
