@@ -44,4 +44,32 @@ describe Toy::Store::All do
       subject.add_persistence_keys(['key'])
     end
   end
+
+  describe '.first' do
+    before do
+      subject.stub(:all).and_return(['1', '2', '3'])
+    end
+    it 'returns the first result from all' do
+      subject.should_receive(:all).once
+      expect(subject.first).to eql('1')
+    end
+  end
+
+  describe '.last' do
+    before do
+      subject.stub(:all).and_return(['1', '2', '3'])
+    end
+    it 'returns the last result from all' do
+      subject.should_receive(:all).once
+      expect(subject.last).to eql('3')
+    end
+  end
+
+  describe 'the class is subclassed' do
+    it 'the parent adds its persistence keys to the child' do
+      test_class = Tester
+      test_class.should_receive(:add_persistence_keys).once.with(subject.persistence_keys)
+      subject.inherited(test_class)
+    end
+  end
 end
