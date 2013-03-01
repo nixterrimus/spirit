@@ -49,7 +49,7 @@ class Adapter::HueAdapter < Adapter::Base
   end
 
   def discover
-    Huey::Bulb.all.each { |b| ColorableLight.create( device_adapter_id: self.id, device_adapter_identifier: b.id) }
+    Huey::Bulb.all.each { |b| ColorableLight.create( device_adapter_id: self.id, device_adapter_identifier: b.id, name: b.name) }
   end
 
   private
