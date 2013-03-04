@@ -1,4 +1,6 @@
+
 # Spirit: Your Personal Internet of Things Hub
+`Control Anything, Remember Everything`
 
 Spirit is your personal internet of things hub.  It makes it simple fo
 r you to manage all of the connected things in your life; things like
@@ -116,11 +118,23 @@ Spirit.adapters
 
 ## Presets
 
+# Making Things Happen
+
+## Events
+
+## Actions
+
 ## Triggers
+
+# A little More about the project
 
 ## Okay, who's involved with this?
 
 Right now, it's Nick Rowe.
+
+## Is it good?
+
+Yes, but it's not ready yet.
 
 ## This sounds cool, how can I help
 
