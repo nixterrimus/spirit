@@ -4,11 +4,14 @@ class Trigger
 
   # Trigger is listening for something
   # attribute :event_id
-  #
-  # Has an action that it wants to perform
-  # attribute :action_id
+
+  attribute :action_id, String
 
   def apply(event)
-    # Apply the event - preset, device attribute changes, etc
+    event.apply
+  end
+
+  def action
+    Action.find(action_id)
   end
 end
