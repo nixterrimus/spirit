@@ -1,3 +1,6 @@
 class Event
-  attr_reader :raw_payload
+  include Toy::Object
+
+  attribute :pay_payload, String
+  attribute :channel, String
 end
