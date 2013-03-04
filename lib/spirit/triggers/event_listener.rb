@@ -8,6 +8,7 @@ class EventListener
     redis.psubscribe('events.*') do |on|
       on.pmessage do |pattern, channel, message|
         puts "##{channel}: #{message} / #{pattern}"
+        Event.new(channel: channel, raw_payload: message)
       end
     end
   end
