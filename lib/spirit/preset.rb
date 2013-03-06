@@ -1,6 +1,7 @@
 class Preset
   include Toy::Store
   include Toy::Store::All
+  include ActiveModel::Observing
 
   attribute :target_value, Hash
   attribute :device_ids, Array
@@ -21,6 +22,7 @@ class Preset
     devices.each do |device|
       device.update_attributes(target_value[device.id])
     end
+    self.class.notify_observers(:after_apply, self)
   end
 
   private
