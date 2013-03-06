@@ -3,6 +3,7 @@ Dir[File.join(File.dirname(__FILE__), 'abilities', '*.rb')].each {|file| require
 class Device
   include Toy::Store
   include Toy::Store::All
+  include ActiveModel::Observing
 
   attribute :device_adapter_id, String, default: nil
   attribute :name, String, default: "Device"
@@ -37,6 +38,11 @@ class Device
 
   def abilities
     ability_modules.collect { |m| ability_module_to_s(m) }
+  end
+
+  def update_attributes(attributes)
+    super(attributes)
+    self.class.notify_observers(:after_update, self)
   end
 
   private

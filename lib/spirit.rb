@@ -20,6 +20,7 @@ require "spirit/triggers/event_listener"
 require "spirit/triggers/trigger"
 require 'spirit/device/device'
 
+require 'spirit/observers/device_events'
 require 'spirit/observers/preset_events'
 
 module Spirit
