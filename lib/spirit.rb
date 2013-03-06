@@ -18,6 +18,7 @@ require "spirit/triggers/action"
 require "spirit/triggers/preset_action"
 require "spirit/triggers/event_listener"
 require "spirit/triggers/trigger"
+require 'spirit/triggers/event_bus'
 require 'spirit/device/device'
 
 require 'spirit/observers/device_events'
