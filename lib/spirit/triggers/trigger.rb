@@ -2,16 +2,23 @@ class Trigger
   include Toy::Store
   include Toy::Store::All
 
-  # Trigger is listening for something
-  # attribute :event_id
-
   attribute :action_id, String
+  attribute :target_event, String
 
   def apply(event)
-    event.apply
+    worker.perform!(action) if applicable?(event)
   end
 
   def action
-    Action.find(action_id)
+    Action.read(action_id)
   end
+
+  def applicable?(event)
+    !event.nil? && event.channel == target_event
+  end
+
+  def worker
+    SuckerPunch::Queue[:actions]
+  end
+
 end
