@@ -3,9 +3,7 @@ require 'moneta'
 require 'toystore'
 require 'sucker_punch'
 require 'redis'
-
-# Standard Library Dependencies
-require 'singleton'
+require 'active_model_serializers'
 
 #Internal Dependencies
 require 'spirit/workers/adapter'
@@ -20,6 +18,8 @@ require "spirit/triggers/event_listener"
 require "spirit/triggers/trigger"
 require 'spirit/triggers/event_bus'
 require 'spirit/device/device'
+
+require 'spirit/serializers/device'
 
 require 'spirit/observers/device_events'
 require 'spirit/observers/preset_events'
