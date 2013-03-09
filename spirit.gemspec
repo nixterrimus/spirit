@@ -22,6 +22,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency "celluloid"
   gem.add_runtime_dependency "redis"
   gem.add_runtime_dependency 'sucker_punch'
+  gem.add_runtime_dependency 'active_model_serializers'
 
   # Added for hue_adapter, to remove when hue adapter
   #  is broken out
