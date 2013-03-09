@@ -2,7 +2,13 @@ class DeviceEvents < ActiveModel::Observer
   observe(Device.descendants.push(Device) )
 
   def after_update(device)
-    EventBus.fire_event("device.#{device.id}.updated")
+    EventBus.fire_event("device.#{device.id}.updated", json_for_device(device))
+  end
+
+  private
+
+  def json_for_device(device)
+    DeviceSerializer.new(device).to_json
   end
 
 end
