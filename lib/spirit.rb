@@ -20,6 +20,7 @@ require 'spirit/triggers/event_bus'
 require 'spirit/device/device'
 
 require 'spirit/serializers/device'
+require 'spirit/serializers/preset'
 
 require 'spirit/observers/device_events'
 require 'spirit/observers/preset_events'
