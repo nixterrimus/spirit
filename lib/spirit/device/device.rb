@@ -71,3 +71,4 @@ end
 require 'spirit/device/light'
 require 'spirit/device/colorable_light'
 require 'spirit/device/dimmable_light'
+require 'spirit/device/squeezebox'
