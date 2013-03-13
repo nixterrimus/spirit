@@ -2,9 +2,6 @@ module Adapter
   class Base
     include Toy::Store
     include Toy::Store::All
-    #include Celluloid
-
-    #include Toy::Store::Celluloid
 
     attr_accessor :setup_complete
 
