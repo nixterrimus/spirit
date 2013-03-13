@@ -9,6 +9,9 @@ all be managed through a single interface.
 
 Spirit is still a young project and is progressing quickly.
 
+## Is it ready yet? Can I use it?
+
+No, not quite yet.
 
 ## Getting Configured
 
