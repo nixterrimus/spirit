@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+$:.unshift File.join(File.dirname(__FILE__), *%w{ .. lib })
+
+require 'spirit'
+require 'spirit_server'
+
+SpiritHTTPServer.run!
+
+# The future home of spirit related commands
+# Spirit will be able to:
+#   - launch a console into your system
+#   - start the bus event listener
+#   - start the spirit http server
+# All of these sub-pieces communicate through saving data
+# with the persistence store and reloading it frequently
+#
+# There may also be a Procfile which launched and monitored
+#  which starts both the message bus listener and the web
+#  server
