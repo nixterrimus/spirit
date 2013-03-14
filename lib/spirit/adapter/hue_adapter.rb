@@ -28,10 +28,11 @@ class Adapter::HueAdapter < Adapter::Base
     step(:settings) # A special step that shows a settings page based on settings defined above
   end
 
-  def apply(attributes)
+  def apply(device)
+    attributes = device.attributes
     bulb = light_for(attributes)
     bulb.on = on?(attributes)
- 
+
     if on?(attributes)
       bulb.rgb = hex_color(attributes)
       bulb.bri = brightness(attributes)
