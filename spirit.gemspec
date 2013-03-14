@@ -24,6 +24,9 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency 'sucker_punch'
   gem.add_runtime_dependency 'active_model_serializers'
 
+  # Server Requirements
+  gem.add_runtime_dependency 'sinatra'
+
   # Added for hue_adapter, to remove when hue adapter
   #  is broken out
   gem.add_runtime_dependency 'huey'
