@@ -45,7 +45,21 @@ class Device
     self.class.notify_observers(:after_update, self)
   end
 
+  def current_state
+    state = {}
+    current_state_attributes.map { |attr| state[attr] = send(attr) }
+    state
+  end
+
+  def current_state_attributes
+    self.class.attributes.keys - Device.attributes.keys - current_state_black_listed_attributes 
+  end
+  
   private
+
+  def current_state_black_listed_attributes
+    ["type"]
+  end
 
   def apply_state
     device_adapter_worker.perform!(id, device_adapter_id)

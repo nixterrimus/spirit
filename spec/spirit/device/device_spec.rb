@@ -37,6 +37,23 @@ describe Device do
     end
   end
 
+  describe "#current_state" do
+    it 'returns a hash with the current state' do
+      expect(subject.current_state.class).to eql(Hash)
+    end
+
+    it 'uses the current state attributes' do
+      subject.should_receive(:current_state_attributes).and_return([])
+      subject.current_state
+    end
+  end
+
+  describe "#current_state_attributes" do
+    it 'returns an array' do
+      expect(subject.current_state_attributes.class).to eql(Array)
+    end
+  end
+
   describe "#device_adapter" do
     context 'when a device adapter is already set' do
       it 'returns that adapter' do
