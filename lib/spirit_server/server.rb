@@ -12,4 +12,11 @@ class SpiritHTTPServer < Sinatra::Base
     serializer = DeviceSerializer.new(device)
     serializer.to_json
   end
+
+  get '/presets' do
+    content_type :json
+    presets = Spirit.presets
+    serializer = ActiveModel::ArraySerializer.new(presets, each_serializer: PresetSerializer)
+    serializer.to_json
+  end
 end
