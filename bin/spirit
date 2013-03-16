@@ -2,10 +2,23 @@
 
 $:.unshift File.join(File.dirname(__FILE__), *%w{ .. lib })
 
+require 'commander/import'
+
 require 'spirit'
 require 'spirit_server'
 
-SpiritHTTPServer.run!
+program :name, 'spirit'
+program :version, Spirit::VERSION
+program :description, 'Spirit is your personal internet of things'
+
+command 'api-server' do |c|
+  c.syntax = 'spirit server [options]'
+  c.description = 'Run the API Server'
+
+  c.action do |args, options|
+    SpiritHTTPServer.run!
+  end
+end
 
 # The future home of spirit related commands
 # Spirit will be able to:
