@@ -16,7 +16,11 @@ command 'api-server' do |c|
   c.description = 'Run the API Server'
 
   c.action do |args, options|
-    SpiritHTTPServer.run!
+    server = SpiritHTTPServer
+    server.set :spirit, Spirit
+    server.run!
+  end
+end
   end
 end
 
