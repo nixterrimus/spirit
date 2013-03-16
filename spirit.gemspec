@@ -23,6 +23,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency "redis"
   gem.add_runtime_dependency 'sucker_punch'
   gem.add_runtime_dependency 'active_model_serializers'
+  gem.add_runtime_dependency 'commander'
 
   # Server Requirements
   gem.add_runtime_dependency 'sinatra'
