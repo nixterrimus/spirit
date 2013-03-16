@@ -5,7 +5,7 @@ $:.unshift File.join(File.dirname(__FILE__), *%w{ .. lib })
 require 'commander/import'
 
 require 'spirit'
-require 'spirit_server'
+require 'spirit_http_api_server'
 require 'spirit_intent_listener'
 
 program :name, 'spirit'

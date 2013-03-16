@@ -2,5 +2,4 @@ require 'sinatra'
 require 'pry'
 
 require 'spirit'
-require 'spirit_server/server'
-
+require 'spirit_http_api_server/server'
