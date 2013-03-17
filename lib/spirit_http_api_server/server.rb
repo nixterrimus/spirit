@@ -8,7 +8,7 @@ class SpiritHTTPServer < Sinatra::Base
 
   get '/devices/:id' do
     content_type :json    
-    device = environment.find(params[:id])
+    device = spirit.devices.find(params[:id]).first
     serializer = DeviceSerializer.new(device)
     serializer.to_json
   end
