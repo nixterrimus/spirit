@@ -7,6 +7,9 @@ r you to manage all of the connected things in your life; things like
 lights, tvs, media centers, music players, and washing machines can
 all be managed through a single interface.
 
+Here's a more consumer facing look at what spirit is: [Welcome to
+Spirit](http://blog.dcxn.com/2013/03/16/welcome-to-spirit/)
+
 Spirit is still a young project and is progressing quickly.
 
 ## Is it ready yet? Can I use it?
