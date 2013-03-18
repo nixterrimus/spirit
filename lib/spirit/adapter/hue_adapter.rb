@@ -61,7 +61,7 @@ class Adapter::HueAdapter < Adapter::Base
   end
 
   def on?(attributes)
-    attributes["binary_state"] == :on
+    attributes["binary_state"] == 'on'
   end
 
   def brightness(attributes)
