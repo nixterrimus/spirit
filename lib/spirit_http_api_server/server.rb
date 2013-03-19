@@ -13,6 +13,14 @@ class SpiritHTTPServer < Sinatra::Base
     serializer.to_json
   end
 
+  put '/devices/:id' do
+    json = JSON.parse(request.body.read)
+    device = Device.read(params[:id])
+    adapter = device.device_adapter
+    device.update_attributes(json.fetch('state', {}))
+    adapter.apply(device)
+  end
+
   get '/presets' do
     content_type :json
     presets = spirit.presets
