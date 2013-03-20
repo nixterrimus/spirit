@@ -14,7 +14,7 @@ Spirit is still a young project and is progressing quickly.
 
 ## Is it ready yet? Can I use it?
 
-No, not quite yet.
+No, not quite yet.  Spirit is in very active development and lots of things are moving, being developed, and changed.
 
 ## Getting Configured
 
@@ -124,13 +124,7 @@ Spirit.adapters
 
 ## Presets
 
-# Making Things Happen
-
-## Events
-
-## Actions
-
-## Triggers
+Presets let a specific look be saved.  A preset can store a collection of target devices each with target states.
 
 # A little More about the project
 
