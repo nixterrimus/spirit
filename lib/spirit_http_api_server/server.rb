@@ -28,6 +28,12 @@ class SpiritHTTPServer < Sinatra::Base
     serializer.to_json
   end
 
+  get '/adapters' do
+    content_type :json
+    adapters = Adapter::Base.all
+    serializer = ActiveModel::ArraySerializer.new(adapters, each_serializer: AdapterSerializer)
+    serializer.to_json
+  end
   def spirit
     settings.spirit
   end
