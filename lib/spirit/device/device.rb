@@ -62,7 +62,7 @@ class Device
   end
 
   def apply_state
-    device_adapter_worker.perform!(id, device_adapter_id)
+    device_adapter.apply(self)
   end
 
   def device_adapter_worker
