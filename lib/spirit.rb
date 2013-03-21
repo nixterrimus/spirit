@@ -12,10 +12,6 @@ require "spirit/all"
 require "spirit/adapter/base"
 require "spirit/preset"
 require "spirit/triggers/event"
-require "spirit/triggers/action"
-require "spirit/triggers/preset_action"
-require "spirit/triggers/event_listener"
-require "spirit/triggers/trigger"
 require 'spirit/triggers/event_bus'
 require 'spirit/device/device'
 
