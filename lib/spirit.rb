@@ -17,6 +17,7 @@ require 'spirit/device/device'
 
 require 'spirit/serializers/device_serializer'
 require 'spirit/serializers/preset_serializer'
+require 'spirit/serializers/adapter_serializer'
 
 require 'spirit/observers/device_events'
 require 'spirit/observers/preset_events'
