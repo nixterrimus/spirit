@@ -75,7 +75,7 @@ module Spirit
     def persisted_classes
       # TODO: Do better than just listing these out, find this list
       #   programmatically
-      [Device, Light, Preset, Trigger, Action, PresetAction, DimmableLight, ColorableLight] + persisted_adapters
+      [Device, Light, Preset, DimmableLight, ColorableLight] + persisted_adapters
     end
 
     def persisted_adapters
