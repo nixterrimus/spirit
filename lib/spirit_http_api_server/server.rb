@@ -28,6 +28,13 @@ class SpiritHTTPServer < Sinatra::Base
     serializer.to_json
   end
 
+  get '/presets/:id' do
+    content_type :json
+    device = Preset.read(params[:id])
+    serializer = PresetSerializer.new(device)
+    serializer.to_json
+  end
+
   get '/adapters' do
     content_type :json
     adapters = Adapter::Base.all
