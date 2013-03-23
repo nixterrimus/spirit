@@ -38,7 +38,7 @@ module Spirit
 
     # Too much happening in this class, this belong elsewhere
     def parse_params(params)
-      JSON.parse(params)
+      JSON.parse(params).with_indifferent_access
     end
 
     def logger
