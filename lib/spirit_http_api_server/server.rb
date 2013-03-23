@@ -41,6 +41,14 @@ class SpiritHTTPServer < Sinatra::Base
     serializer = ActiveModel::ArraySerializer.new(adapters, each_serializer: AdapterSerializer)
     serializer.to_json
   end
+
+  get '/adapters/:id' do
+    content_type :json
+    device = Adapter::Base.read(params[:id])
+    serializer = AdapterSerializer.new(device)
+    serializer.to_json
+  end
+
   def spirit
     settings.spirit
   end
