@@ -1,4 +1,4 @@
-class AdapterSerializer  < ActiveModel::Serializer
+class DriverSerializer  < ActiveModel::Serializer
   attributes :id, :metadata
 
   def metadata

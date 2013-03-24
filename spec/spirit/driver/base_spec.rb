@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Adapter::Base do
+describe Driver::Base do
 
 end

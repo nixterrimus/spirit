@@ -6,10 +6,10 @@ require 'redis'
 require 'active_model_serializers'
 
 #Internal Dependencies
-require 'spirit/workers/adapter'
+require 'spirit/workers/driver'
 require "spirit/version"
 require "spirit/all"
-require "spirit/adapter/base"
+require "spirit/driver/base"
 require "spirit/preset"
 require "spirit/triggers/event"
 require 'spirit/triggers/event_bus'
@@ -17,14 +17,14 @@ require 'spirit/device/device'
 
 require 'spirit/serializers/device_serializer'
 require 'spirit/serializers/preset_serializer'
-require 'spirit/serializers/adapter_serializer'
+require 'spirit/serializers/driver_serializer'
 
 require 'spirit/observers/device_events'
 require 'spirit/observers/preset_events'
 
 module Spirit
   class << self
-    attr_accessor :configuration, :devices, :adapters
+    attr_accessor :configuration, :devices, :drivers
   end
 
   def self.configure
@@ -40,8 +40,8 @@ module Spirit
     Preset.all
   end
 
-  def self.adapters
-    Adapter.all
+  def self.drivers
+    Driver::Base.all
   end
 
   def self.configuration
@@ -55,32 +55,32 @@ module Spirit
       @persistance_store = Moneta.new(:File, dir: "./persistence")
 
       SuckerPunch.config do
-        queue name: :adapters, worker: ::Worker::AdapterWorker, size: 2
+        queue name: :drivers, worker: ::Worker::DriverWorker, size: 2
       end
 
-      update_adapters
+      update_drivers
     end
 
     def persistance_store=(store)
       @persistance_store = store
-      update_adapters
+      update_drivers
     end
 
     private
 
-    def update_adapters
+    def update_drivers
      persisted_classes.each { |c| c.adapter :memory, @persistance_store }
     end
 
     def persisted_classes
       # TODO: Do better than just listing these out, find this list
       #   programmatically
-      [Device, Light, Preset, DimmableLight, ColorableLight] + persisted_adapters
+      [Device, Light, Preset, DimmableLight, ColorableLight] + persisted_drivers
     end
 
-    def persisted_adapters
-      adapters = Adapter.constants.select {|c| Adapter.const_get(c).is_a?(Class) && Adapter.const_get(c).respond_to?('adapter') }
-      adapters.collect { |c| Adapter.const_get(c) }
+    def persisted_drivers
+      drivers = Driver.constants.select {|c| Driver.const_get(c).is_a?(Class) && Driver.const_get(c).respond_to?('driver') }
+      drivers.collect { |c| Driver.const_get(c) }
     end
   end
 end

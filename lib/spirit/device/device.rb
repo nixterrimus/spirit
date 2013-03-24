@@ -5,35 +5,35 @@ class Device
   include Toy::Store::All
   include ActiveModel::Observing
 
-  attribute :device_adapter_id, String, default: nil
+  attribute :driver_id, String, default: nil
   attribute :name, String, default: "Device"
 
   # How the adapter distinguishes this device from other devices
   #   it manages.  For example ip address, node number, unique id
-  attribute :device_adapter_identifier, String, default: nil
+  attribute :driver_identifier, String, default: nil
 
   after_update :apply_state
 
   validate :device_uniqueness
 
   def device_uniqueness
-    return if device_adapter_id.nil?
+    return if driver_id.nil?
     pool = self.class.all.select do|check_device| 
-      check_device.device_adapter_id == device_adapter_id && 
-        check_device.device_adapter_identifier == device_adapter_identifier
+      check_device.driver_id == driver_id && 
+        check_device.driver_identifier == driver_identifier
     end
     if !persisted? && !pool.empty? 
-      errors.add(:device_adapter_identifier, "device already exists")
+      errors.add(:driver_identifier, "device already exists")
     end
   end
 
-  def device_adapter
-    @device_adapter ||= Adapter::Base.read(device_adapter_id)
+  def driver
+    @driver ||= Driver::Base.read(driver_id)
   end
 
-  def device_adapter=(device_adapter)
-    @device_adapter = device_adapter
-    self.device_adapter_id = @device_adapter.try(:id)
+  def driver=(driver)
+    @driver = driver
+    self.driver_id = @driver.try(:id)
   end
 
   def abilities
@@ -62,11 +62,7 @@ class Device
   end
 
   def apply_state
-    device_adapter.apply(self)
-  end
-
-  def device_adapter_worker
-    SuckerPunch::Queue[:adapters]
+    driver.apply(self)
   end
 
   def ability_modules

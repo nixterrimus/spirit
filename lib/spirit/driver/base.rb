@@ -1,4 +1,4 @@
-module Adapter
+module Driver
   class Base
     include Toy::Store
     include Toy::Store::All
@@ -86,5 +86,5 @@ module Adapter
   end
 end
 
-require 'spirit/adapter/nil_adapter'
-require 'spirit/adapter/hue_adapter'
+require 'spirit/driver/nil_driver'
+require 'spirit/driver/hue_driver'

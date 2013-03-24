@@ -1,4 +1,4 @@
-class Adapter::NilAdapter < Adapter::Base
+class Driver::NilDriver < Driver::Base
 
   def apply(attributes)
     sleep 3

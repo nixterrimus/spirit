@@ -1,6 +1,6 @@
 require 'huey'
 
-class Adapter::HueAdapter < Adapter::Base
+class Driver::HueAdapter < Driver::Base
 
   creator "Nick Rowe"
   adapts_to "Philips Hue Lighting System"

@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe Device do
   subject { Device.new }
-  let(:fake_adapter) { OpenStruct.new( { id: 123 }) }
+  let(:fake_driver) { OpenStruct.new( { id: 123 }) }
 
-  its(:attributes) { should include 'device_adapter_id' }
-  its(:attributes) { should include 'device_adapter_identifier' }
+  its(:attributes) { should include 'driver_id' }
+  its(:attributes) { should include 'driver_identifier' }
   its(:attributes) { should include 'name' }
 
   describe '#name' do
@@ -16,12 +16,12 @@ describe Device do
 
   describe 'uniqness' do
     context 'on create' do
-      let(:device_adapter_id) { 1 }
-      let(:device_adapter_identifier) { 1 }
-      it "validates there's only one device with the same device_adapter_id and device_adapter_identifier" do
-        Device.create( device_adapter_identifier: device_adapter_identifier, device_adapter_id: device_adapter_id)
+      let(:driver_id) { 1 }
+      let(:driver_identifier) { 1 }
+      it "validates there's only one device with the same driver_id and driver_identifier" do
+        Device.create( driver_identifier: driver_identifier, driver_id: driver_id)
         expect do
-         Device.create!( device_adapter_identifier: device_adapter_identifier, device_adapter_id: device_adapter_id)
+         Device.create!( driver_identifier: driver_identifier, driver_id: driver_id)
         end.to raise_error
       end
     end
@@ -54,19 +54,19 @@ describe Device do
     end
   end
 
-  describe "#device_adapter" do
-    context 'when a device adapter is already set' do
-      it 'returns that adapter' do
-        subject.device_adapter = fake_adapter
-        expect(subject.device_adapter).to be(fake_adapter)
+  describe "#driver" do
+    context 'when a device driver is already set' do
+      it 'returns that driver' do
+        subject.driver = fake_driver
+        expect(subject.driver).to be(fake_driver)
       end
     end
   end
 
-  describe "#device_adapter=" do
-    it 'sets the device_adapter to the new adapter' do
-      subject.device_adapter = fake_adapter
-      expect(subject.device_adapter.id).to eql(fake_adapter.id)
+  describe "#driver=" do
+    it 'sets the driver to the new driver' do
+      subject.driver = fake_driver
+      expect(subject.driver.id).to eql(fake_driver.id)
     end
   end
 
