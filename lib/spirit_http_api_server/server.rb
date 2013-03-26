@@ -35,17 +35,17 @@ class SpiritHTTPServer < Sinatra::Base
     serializer.to_json
   end
 
-  get '/adapters' do
+  get '/drivers' do
     content_type :json
-    adapters = Adapter::Base.all
-    serializer = ActiveModel::ArraySerializer.new(adapters, each_serializer: AdapterSerializer)
+    driver = Driver::Base.all
+    serializer = ActiveModel::ArraySerializer.new(drivers, each_serializer: DriverSerializer)
     serializer.to_json
   end
 
-  get '/adapters/:id' do
+  get '/driver/:id' do
     content_type :json
-    device = Adapter::Base.read(params[:id])
-    serializer = AdapterSerializer.new(device)
+    device = Driver::Base.read(params[:id])
+    serializer = DriverSerializer.new(device)
     serializer.to_json
   end
 
