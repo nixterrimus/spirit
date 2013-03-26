@@ -16,9 +16,9 @@ class SpiritHTTPServer < Sinatra::Base
   put '/devices/:id' do
     json = JSON.parse(request.body.read)
     device = Device.read(params[:id])
-    adapter = device.device_adapter
+    driver = device.driver
     device.update_attributes(json.fetch('state', {}))
-    adapter.apply(device)
+    driver.apply(device)
   end
 
   get '/presets' do
