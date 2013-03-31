@@ -11,7 +11,7 @@ class Responder
   end
 
   def intent_class_name
-    
+    channel.split(".").last.classify
   end
 
 end

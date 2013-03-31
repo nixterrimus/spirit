@@ -31,7 +31,6 @@ describe Responder do
 
   describe '#intent_class_name' do
     it 'parses the channel to get the appropriate name' do
-      pending
       expect(subject.intent_class_name).to eql('ApplyPreset')
     end
   end
