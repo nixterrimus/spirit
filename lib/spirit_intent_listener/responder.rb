@@ -19,7 +19,7 @@ class Responder
   end
 
   def intent
-    intent_class.new
+    @intent ||= intent_class.new
   end
 
   def apply

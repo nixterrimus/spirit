@@ -47,6 +47,12 @@ describe Responder do
     it 'returns an instance on the intent_class' do
       expect(subject.intent.class).to eql(Intent::ApplyPreset)
     end
+    it 'memoizes the result so the intent is always the same' do
+      object_id = subject.intent.object_id
+      expect(subject.intent.object_id).to eql(object_id)
+      expect(subject.intent.object_id).to eql(object_id)
+      expect(subject.intent.object_id).to eql(object_id)
+    end
   end
 
   describe '#apply' do
