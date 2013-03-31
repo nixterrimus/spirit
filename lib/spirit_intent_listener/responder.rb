@@ -18,4 +18,10 @@ class Responder
     Object.const_get("Intent").const_get(intent_class_name)
   end
 
+  def intent
+  end
+
+  def apply
+  end
+
 end
