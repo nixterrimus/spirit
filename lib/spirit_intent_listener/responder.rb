@@ -2,6 +2,7 @@ class Responder
   attr_reader :params, :parsed_params
   def initialize(params)
     @params = params
+    parse_params
   end
 
   def parse_params
