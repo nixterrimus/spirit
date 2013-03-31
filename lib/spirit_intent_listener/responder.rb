@@ -19,6 +19,7 @@ class Responder
   end
 
   def intent
+    intent_class.new
   end
 
   def apply

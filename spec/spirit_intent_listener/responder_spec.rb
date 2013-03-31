@@ -43,6 +43,12 @@ describe Responder do
     end
   end
 
+  describe "#intent" do
+    it 'returns an instance on the intent_class' do
+      expect(subject.intent.class).to eql(Intent::ApplyPreset)
+    end
+  end
+
   describe '#apply' do
     it 'sends the parsed_params to the intent_class apply' do
       pending
