@@ -61,4 +61,10 @@ describe Responder do
       subject.apply
     end
   end
+
+  describe "Using a Responder" do
+    it 'can be initialized and applied' do
+      expect { Responder.new(channel, params).apply }.to_not raise_error
+    end
+  end
 end
