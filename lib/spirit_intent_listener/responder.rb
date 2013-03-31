@@ -23,6 +23,7 @@ class Responder
   end
 
   def apply
+    intent.apply(parsed_params)
   end
 
 end

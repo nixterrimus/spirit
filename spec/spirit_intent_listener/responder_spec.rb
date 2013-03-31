@@ -57,7 +57,6 @@ describe Responder do
 
   describe '#apply' do
     it 'sends the parsed_params to the intent_class apply' do
-      pending
       subject.intent_class.any_instance.should_receive(:apply).with(subject.parsed_params)
       subject.apply
     end
