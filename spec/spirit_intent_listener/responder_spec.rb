@@ -34,4 +34,12 @@ describe Responder do
       expect(subject.intent_class_name).to eql('ApplyPreset')
     end
   end
+
+  describe "#intent_class" do
+    context 'the intent is present in the system' do
+      it 'returns a class of the intent in the intent namespace' do
+        expect(subject.intent_class).to eql(Intent::ApplyPreset)
+      end
+    end
+  end
 end

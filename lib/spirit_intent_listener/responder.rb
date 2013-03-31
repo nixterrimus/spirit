@@ -14,4 +14,8 @@ class Responder
     channel.split(".").last.classify
   end
 
+  def intent_class
+    Object.const_get("Intent").const_get(intent_class_name)
+  end
+
 end
