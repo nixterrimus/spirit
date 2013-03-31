@@ -2,11 +2,15 @@ require 'spec_helper'
 
 describe Responder do
   let(:params) { '{"preset": {"id": "718bbaa6-85f1-11e2-935e-d611d120ea23"}}' }
-  subject(:responder) { Responder.new(params) }
+  let(:channel) { 'intents.spirit.applyPreset' }
+  subject(:responder) { Responder.new(channel, params) }
 
   describe "initialization" do
     it 'receives a string of the params and stores it' do
       expect(responder.params).to eql(params)
+    end
+    it 'receives the channel the params were receive on and stores it' do
+      expect(responder.channel).to eql(channel)
     end
     it 'parses the params' do
       expect(responder.parsed_params).to_not eql(nil)
