@@ -24,4 +24,11 @@ describe Responder do
       expect(responder.parsed_params.fetch(:preset).fetch(:id)).to eql("718bbaa6-85f1-11e2-935e-d611d120ea23")
     end
   end
+
+  describe '#intent_class_name' do
+    it 'parses the channel to get the appropriate name' do
+      pending
+      expect(subject.intent_class_name).to eql('ApplyPreset')
+    end
+  end
 end
