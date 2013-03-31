@@ -17,7 +17,9 @@ describe Responder do
       expect(subject.parsed_params).to_not eql(nil)
     end
     it 'decodes the params' do
-      pending
+      subject.parse_params
+      expect{ subject.parsed_params.fetch(:preset).fetch(:id) }.to_not raise_error
+      expect(subject.parsed_params.fetch(:preset).fetch(:id)).to eql("718bbaa6-85f1-11e2-935e-d611d120ea23")
     end
   end
 end
