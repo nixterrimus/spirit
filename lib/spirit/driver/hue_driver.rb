@@ -50,13 +50,13 @@ class Driver::HueAdapter < Driver::Base
   end
 
   def discover
-    Huey::Bulb.all.each { |b| ColorableLight.create( device_adapter_id: self.id, device_adapter_identifier: b.id, name: b.name) }
+    Huey::Bulb.all.each { |b| ColorableLight.create( driver_id: self.id, driver_identifier: b.id, name: b.name) }
   end
 
   private
 
   def light_for(attributes)
-    id = attributes["device_adapter_identifier"]
+    id = attributes["driver_identifier"]
     Huey::Bulb.find(id.to_i)
   end
 
