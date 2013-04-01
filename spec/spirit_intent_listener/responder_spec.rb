@@ -64,6 +64,7 @@ describe Responder do
 
   describe "Using a Responder" do
     it 'can be initialized and applied' do
+      Intent::ApplyPreset.any_instance.should_receive(:apply).with(subject.parsed_params)
       expect { Responder.new(channel, params).apply }.to_not raise_error
     end
   end
