@@ -1,8 +1,8 @@
 module Spirit
   class IntentListener
-    attr_reader :spirit
-    def initialize(spirit, config={})
-      @spirit = spirit
+    attr_reader :environment
+    def initialize(environment, config={})
+      @environment = environment
     end
 
     def listen
