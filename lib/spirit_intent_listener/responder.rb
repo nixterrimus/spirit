@@ -1,3 +1,6 @@
+# A responder takes the channel and params and gets an instance
+#   of the correct intent.  It can then apply the intent with
+#   the appropriate parameters 
 class Responder
   attr_reader :params, :parsed_params, :channel
   def initialize(channel, params)
