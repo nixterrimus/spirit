@@ -22,6 +22,8 @@ require 'spirit/serializers/driver_serializer'
 require 'spirit/observers/device_events'
 require 'spirit/observers/preset_events'
 
+require 'spirit/environment'
+
 module Spirit
   class << self
     attr_accessor :configuration, :devices, :drivers
