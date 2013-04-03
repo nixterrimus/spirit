@@ -1,12 +1,10 @@
 # External Dependencies
 require 'moneta'
 require 'toystore'
-require 'sucker_punch'
 require 'redis'
 require 'active_model_serializers'
 
 #Internal Dependencies
-require 'spirit/workers/driver'
 require "spirit/version"
 require "spirit/all"
 require "spirit/driver/base"
@@ -55,10 +53,6 @@ module Spirit
 
     def initialize
       @persistance_store = Moneta.new(:File, dir: "./persistence")
-
-      SuckerPunch.config do
-        queue name: :drivers, worker: ::Worker::DriverWorker, size: 2
-      end
 
       update_drivers
     end
