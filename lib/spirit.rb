@@ -32,6 +32,10 @@ module Spirit
     yield(configuration) if block_given?
   end
 
+  def self.environment
+    @environment ||= Environment.new
+  end
+
   def self.devices
     Device.all
   end
