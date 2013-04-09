@@ -1,8 +1,9 @@
 module Spirit
   class IntentListener
-    attr_reader :environment
+    attr_reader :environment, :redis
     def initialize(environment, config={})
       @environment = environment
+      @redis = config.fetch(:redis, default_redis)
     end
 
     def listen
@@ -25,8 +26,8 @@ module Spirit
       'intents.spirit.*'
     end
 
-    def redis
-      @redis ||= Redis.new
+    def default_redis
+      Redis.new
     end
 
     def logger
