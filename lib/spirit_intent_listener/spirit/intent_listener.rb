@@ -1,10 +1,10 @@
 module Spirit
   class IntentListener
-    attr_reader :environment, :redis
     attr_reader :environment, :redis, :default_logger, :channel_to_listen_on
     def initialize(environment, config={})
       @environment = environment
       @redis = config.fetch(:redis, default_redis)
+      @channel_to_listen_on = config.fetch(:channel_to_listen_on, default_channel_to_listen_on)
       @logger = config.fetch(:logger, default_logger)
     end
 
@@ -24,7 +24,7 @@ module Spirit
 
     private
 
-    def channel_to_listen_on
+    def default_channel_to_listen_on
       'intents.spirit.*'
     end
 
