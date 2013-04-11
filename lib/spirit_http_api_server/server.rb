@@ -1,7 +1,7 @@
 class SpiritHTTPServer < Sinatra::Base
   get '/devices' do
     content_type :json
-    devices = spirit.devices
+    devices = environment.devices
     serializer = ActiveModel::ArraySerializer.new(devices, each_serializer: DeviceSerializer)
     serializer.to_json
   end
@@ -23,7 +23,7 @@ class SpiritHTTPServer < Sinatra::Base
 
   get '/presets' do
     content_type :json
-    presets = spirit.presets
+    presets = environment.presets
     serializer = ActiveModel::ArraySerializer.new(presets, each_serializer: PresetSerializer)
     serializer.to_json
   end
@@ -37,7 +37,7 @@ class SpiritHTTPServer < Sinatra::Base
 
   get '/drivers' do
     content_type :json
-    driver = Driver::Base.all
+    drivers = environment.drivers
     serializer = ActiveModel::ArraySerializer.new(drivers, each_serializer: DriverSerializer)
     serializer.to_json
   end
@@ -49,7 +49,7 @@ class SpiritHTTPServer < Sinatra::Base
     serializer.to_json
   end
 
-  def spirit
-    settings.spirit
+  def environment
+    settings.environment
   end
 end
