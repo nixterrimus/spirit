@@ -36,18 +36,6 @@ module Spirit
     @environment ||= Environment.new
   end
 
-  def self.devices
-    Device.all
-  end
-
-  def self.presets
-    Preset.all
-  end
-
-  def self.drivers
-    Driver::Base.all
-  end
-
   def self.configuration
     @configuration ||= Configuration.new
   end
