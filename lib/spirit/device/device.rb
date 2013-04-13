@@ -46,15 +46,15 @@ class Device
   end
 
   def current_state
-    state = {}
-    current_state_attributes.map { |attr| state[attr] = send(attr) }
-    state
+    Hash.new.tap do |state|
+      current_state_attributes.map { |attr| state[attr] = send(attr) }
+    end
   end
 
   def current_state_attributes
     self.class.attributes.keys - Device.attributes.keys - current_state_black_listed_attributes 
   end
-  
+
   private
 
   def current_state_black_listed_attributes
